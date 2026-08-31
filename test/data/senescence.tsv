@@ -1,0 +1,99 @@
+331	XIAP	X-linked inhibitor of apoptosis	Yes	Stress-induced	Inhibits	22760199
+1200	TPP1	tripeptidyl peptidase 1	No	Stress-induced	Inhibits	27559927
+1462	VCAN	versican	No	Stress-induced	Induces	30622695
+1787	TRDMT1	tRNA aspartic acid methyltransferase 1	No	Replicative	Inhibits	28843151
+4904	YBX1	Y-box binding protein 1	No	Replicative	Inhibits	29712925
+6434	TRA2B	transformer 2 beta homolog	Yes	Unclear	Inhibits	27043659
+6935	ZEB1	zinc finger E-box binding homeobox 1	Yes	Oncogene-induced	Inhibits	27965283
+6935	ZEB1	zinc finger E-box binding homeobox 1	Yes	Replicative	Inhibits	27965283
+7046	TGFBR1	transforming growth factor beta receptor 1	Yes	Unclear	Inhibits	30971692
+7048	TGFBR2	transforming growth factor beta receptor 2	Yes	Unclear	Unclear	28273461
+7048	TGFBR2	transforming growth factor beta receptor 2	Yes	Unclear	Unclear	30971692
+7068	THRB	thyroid hormone receptor beta	Yes	Stress-induced	Unclear	17965546
+7097	TLR2	toll like receptor 2	No	Oncogene-induced	Induces	31183403
+7098	TLR3	toll like receptor 3	No	Unclear	Induces	24165198
+7099	TLR4	toll like receptor 4	No	Unclear	Inhibits	30790400
+7150	TOP1	DNA topoisomerase I	No	Oncogene-induced	Induces	19435923
+7156	TOP3A	DNA topoisomerase III alpha	Yes	Replicative	Induces	24526736
+7157	TP53	tumor protein p53	Yes	Oncogene-induced	Induces	9275177
+7157	TP53	tumor protein p53	Yes	Replicative	Induces	9275177
+7157	TP53	tumor protein p53	Yes	Stress-induced	Induces	9275177
+7158	TP53BP1	tumor protein p53 binding protein 1	No	Unclear	Induces	27371829
+7159	TP53BP2	tumor protein p53 binding protein 2	No	Oncogene-induced	Induces	23248303
+7175	TPR	translocated promoter region, nuclear basket protein	Yes	Unclear	Inhibits	21811608
+7272	TTK	TTK protein kinase	Yes	Unclear	Inhibits	27618777
+7291	TWIST1	twist family bHLH transcription factor 1	Yes	Oncogene-induced	Inhibits	22654667
+7291	TWIST1	twist family bHLH transcription factor 1	Yes	Oncogene-induced	Inhibits	24974259
+7295	TXN	thioredoxin	No	Unclear	Inhibits	20074557
+7297	TYK2	tyrosine kinase 2	No	Unclear	Induces	26583757
+7298	TYMS	thymidylate synthetase	Yes	Oncogene-induced	Inhibits	23249808
+7329	UBE2I	ubiquitin conjugating enzyme E2 I	Yes	Oncogene-induced	Inhibits	29773808
+7334	UBE2N	ubiquitin conjugating enzyme E2 N	Yes	Unclear	Inhibits	30224375
+7335	UBE2V1	ubiquitin conjugating enzyme E2 V1	Yes	Unclear	Inhibits	30224375
+7336	UBE2V2	ubiquitin conjugating enzyme E2 V2	Yes	Unclear	Inhibits	30224375
+7337	UBE3A	ubiquitin protein ligase E3A	Yes	Oncogene-induced	Inhibits	22689861
+7398	USP1	ubiquitin specific peptidase 1	No	Oncogene-induced	Inhibits	27160904
+7421	VDR	vitamin D receptor	No	Oncogene-induced	Inhibits	27041576
+7422	VEGFA	vascular endothelial growth factor A	No	Replicative	Inhibits	9160882
+7465	WEE1	WEE1 G2 checkpoint kinase	Yes	Oncogene-induced	Inhibits	28806777
+7472	WNT2	Wnt family member 2	No	Unclear	Inhibits	17643369
+7474	WNT5A	Wnt family member 5A	Yes	Oncogene-induced	Induces	21816908
+7477	WNT7B	Wnt family member 7B	Yes	Unclear	Inhibits	30971692
+7486	WRN	WRN RecQ like helicase	Yes	Oncogene-induced	Inhibits	12842909
+7490	WT1	WT1 transcription factor	Yes	Oncogene-induced	Inhibits	20972333
+7508	XPC	XPC complex subunit, DNA damage recognition and repair factor	Yes	Stress-induced	Inhibits	20403967
+7514	XPO1	exportin 1	No	Unclear	Induces	31305018
+7528	YY1	YY1 transcription factor	Yes	Unclear	Inhibits	18558095
+7529	YWHAB	tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein beta	Yes	Oncogene-induced	Inhibits	28116547
+7534	YWHAZ	tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein zeta	Yes	Unclear	Inhibits	25412315
+7538	ZFP36	ZFP36 ring finger protein	Yes	Unclear	Induces	20157568
+7543	ZFX	zinc finger protein X-linked	Yes	Unclear	Inhibits	24228108
+7707	ZNF148	zinc finger protein 148	Yes	Unclear	Inhibits	19583777
+7756	ZNF207	zinc finger protein 207	Yes	Unclear	Inhibits	25918225
+7764	ZNF217	zinc finger protein 217	No	Replicative	Inhibits	11245413
+8089	YEATS4	YEATS domain containing 4	Yes	Unclear	Inhibits	24170126
+8295	TRRAP	transformation/transcription domain associated protein	Yes	Oncogene-induced	Inhibits	28806777
+8626	TP63	tumor protein p63	No	Oncogene-induced	Induces	19898465
+8741	TNFSF13	TNF superfamily member 13	Yes	Unclear	Inhibits	19466596
+8848	TSC22D1	TSC22 domain family member 1	No	Oncogene-induced	Inhibits	21448135
+8914	TIMELESS	timeless circadian regulator	No	Oncogene-induced	Inhibits	30100061
+9540	TP53I3	tumor protein p53 inducible protein 3	Yes	Replicative	Inhibits	28259183
+9540	TP53I3	tumor protein p53 inducible protein 3	Yes	Stress-induced	Inhibits	28259183
+9966	TNFSF15	TNF superfamily member 15	No	Replicative	Induces	20675618
+10043	TOM1	target of myb1 membrane trafficking protein	No	Unclear	Induces	15265694
+10155	TRIM28	tripartite motif containing 28	No	Oncogene-induced	Induces	25160591
+10269	ZMPSTE24	zinc metallopeptidase STE24	No	Replicative	Inhibits	24101728
+10413	YAP1	Yes1 associated transcriptional regulator	No	Replicative	Inhibits	23576552
+10628	TXNIP	thioredoxin interacting protein	No	Oncogene-induced	Induces	20656682
+10628	TXNIP	thioredoxin interacting protein	No	Replicative	Induces	20656682
+10771	ZMYND11	zinc finger MYND-type containing 11	No	Unclear	Inhibits	17721438
+11059	WWP1	WW domain containing E3 ubiquitin protein ligase 1	No	Replicative	Inhibits	21795702
+11065	UBE2C	ubiquitin conjugating enzyme E2 C	Yes	Unclear	Inhibits	29904125
+11073	TOPBP1	DNA topoisomerase II binding protein 1	Yes	Oncogene-induced	Inhibits	21149450
+11073	TOPBP1	DNA topoisomerase II binding protein 1	Yes	Replicative	Inhibits	21149450
+11197	WIF1	WNT inhibitory factor 1	Yes	Unclear	Induces	24853424
+22974	TPX2	TPX2 microtubule nucleation factor	Yes	Unclear	Inhibits	28638452
+25989	ULK3	unc-51 like kinase 3	No	Unclear	Induces	19279323
+26118	WSB1	WD repeat and SOCS box containing 1	No	Oncogene-induced	Inhibits	27958289
+27287	VENTX	VENT homeobox	Yes	Unclear	Induces	21325273
+29128	UHRF1	ubiquitin like with PHD and ring finger domains 1	No	Oncogene-induced	Inhibits	28394343
+51304	ZDHHC3	zinc finger DHHC-type palmitoyltransferase 3	Yes	Stress-induced	Inhibits	29055014
+51311	TLR8	toll like receptor 8	Yes	Stress-induced	Inhibits	25231413
+51384	WNT16	Wnt family member 16	No	Replicative	Induces	19951988
+54739	XAF1	XIAP associated factor 1	No	Stress-induced	Induces	26802028
+54819	ZCCHC10	zinc finger CCHC-type containing 10	Yes	Replicative	Induces	31404068
+54822	TRPM7	transient receptor potential cation channel subfamily M member 7	Yes	Replicative	Inhibits	22166235
+55062	WIPI1	WD repeat domain, phosphoinositide interacting 1	No	Unclear	Inhibits	30352807
+55813	UTP6	UTP6 small subunit processome component	Yes	Oncogene-induced	Inhibits	25732822
+55813	UTP6	UTP6 small subunit processome component	Yes	Replicative	Inhibits	25732822
+56674	TMEM9B	TMEM9 domain family member B	Yes	Unclear	Induces	21740549
+57103	TIGAR	TP53 induced glycolysis regulatory phosphatase	Yes	Stress-induced	Induces	19710698
+57646	USP28	ubiquitin specific peptidase 28	No	Unclear	Induces	27371829
+64393	ZMAT3	zinc finger matrin-type 3	Yes	Unclear	Inhibits	23085987
+79054	TRPM8	transient receptor potential cation channel subfamily M member 8	Yes	Replicative	Inhibits	22555807
+80019	UBTD1	ubiquitin domain containing 1	Yes	Replicative	Induces	25382750
+80019	UBTD1	ubiquitin domain containing 1	Yes	Stress-induced	Induces	25382750
+81793	TLR10	toll like receptor 10	No	Oncogene-induced	Induces	31183403
+83719	YPEL3	yippee like 3	Yes	Stress-induced	Induces	21671470
+94241	TP53INP1	tumor protein p53 inducible nuclear protein 1	No	Stress-induced	Induces	21093163
+117581	TWIST2	twist family bHLH transcription factor 2	Yes	Oncogene-induced	Inhibits	24974259

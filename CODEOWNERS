@@ -1,0 +1,5 @@
+# Markdown files
+*.md @mariofoglio
+
+# Go files
+*.go @mariofoglio

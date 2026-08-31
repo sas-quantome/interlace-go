@@ -30,3 +30,19 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Exceptions
+!btcusd_one_min_data.csv.gz
+
+# Test files
+*.gz
+*.gob
+*.bin
+coverage.txt
+*/artifact/*.tsv
+*/artifact/*.txt
+*/action/j*
+*/function/j*
+
+# Other
+.DS_Store
