@@ -59,7 +59,7 @@ func WriteGobDataToFile(fn string, data any) error {
 // It creates a robust fallback: if 'file.gz' is requested but missing, it checks for 'file' (and vice versa),
 // adjusting the decompression logic automatically.
 func LoadDataFromGobFile(fn string, data any) error {
-	// 1. Resolve actual filename and compression state
+	// 1. Resolve the actual filename and compression state
 	finalPath, isCompressed, err := resolveFile(fn)
 	if err != nil {
 		return err

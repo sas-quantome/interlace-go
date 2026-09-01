@@ -127,32 +127,32 @@ func TestDispenser_AddExecutionFile(t *testing.T) {
 
 func TestDispenser_AddCatalogFile(t *testing.T) {
 	dispenser, entityNS := createTestEntity(t)
-	dispenser.AddCatalogFile(entityNS, "suk_go_term_hash_id_m.gob.gz")
-	dispenser.AddCatalogFile(entityNS, "uuk_go_term_text_s.gob.gz")
+	dispenser.AddCatalogFile(entityNS, "suk_go_term_hash_id_m.bin")
+	dispenser.AddCatalogFile(entityNS, "uuk_go_term_text_s.bin")
 	require.Equal(t, 2, len(dispenser.Entity[entityNS].Catalog))
 	s := dispenser.EntityCatalogFiles(entityNS)
-	require.Equal(t, path.Join(dispenser.EntityCatalogPath(entityNS), "suk_go_term_hash_id_m.gob.gz"), s[0])
-	require.Equal(t, path.Join(dispenser.EntityCatalogPath(entityNS), "uuk_go_term_text_s.gob.gz"), s[1])
+	require.Equal(t, path.Join(dispenser.EntityCatalogPath(entityNS), "suk_go_term_hash_id_m.bin"), s[0])
+	require.Equal(t, path.Join(dispenser.EntityCatalogPath(entityNS), "uuk_go_term_text_s.bin"), s[1])
 }
 
 func TestDispenser_AddEnumerationFile(t *testing.T) {
 	dispenser, entityNS := createTestEntity(t)
-	dispenser.AddEnumerationFile(entityNS, "uuk_entrez_category_cv_s.gob.gz")
+	dispenser.AddEnumerationFile(entityNS, "uuk_entrez_category_cv_s.bin")
 	require.Equal(t, 1, len(dispenser.Entity[entityNS].Enumeration))
 	s := dispenser.EntityEnumerationFiles(entityNS)
-	require.Equal(t, path.Join(dispenser.EntityEnumerationPath(entityNS), "uuk_entrez_category_cv_s.gob.gz"), s[0])
+	require.Equal(t, path.Join(dispenser.EntityEnumerationPath(entityNS), "uuk_entrez_category_cv_s.bin"), s[0])
 }
 
 func TestDispenser_AddPropertyFile(t *testing.T) {
 	dispenser, entityNS := createTestEntity(t)
-	dispenser.AddPropertyFile(entityNS, "", "", "suk_entrez_gene_id_i.gob.gz")
-	dispenser.AddPropertyFile(entityNS, "baa", "", "suk_baa_s.gob.gz")
-	dispenser.AddPropertyFile(entityNS, "baa", "aaa", "suk_baa_aaa_s.gob.gz")
+	dispenser.AddPropertyFile(entityNS, "", "", "suk_entrez_gene_id_i.bin")
+	dispenser.AddPropertyFile(entityNS, "baa", "", "suk_baa_s.bin")
+	dispenser.AddPropertyFile(entityNS, "baa", "aaa", "suk_baa_aaa_s.bin")
 	require.Equal(t, 3, len(dispenser.Entity[entityNS].Property))
 	s := dispenser.EntityPropertyFiles(entityNS)
-	require.Equal(t, path.Join(dispenser.EntityPropertyPath(entityNS), "suk_entrez_gene_id_i.gob.gz"), s[0])
-	require.Equal(t, path.Join(dispenser.EntityPropertyPath(entityNS), "baa", "suk_baa_s.gob.gz"), s[1])
-	require.Equal(t, path.Join(dispenser.EntityPropertyPath(entityNS), "baa", "aaa", "suk_baa_aaa_s.gob.gz"), s[2])
+	require.Equal(t, path.Join(dispenser.EntityPropertyPath(entityNS), "suk_entrez_gene_id_i.bin"), s[0])
+	require.Equal(t, path.Join(dispenser.EntityPropertyPath(entityNS), "baa", "suk_baa_s.bin"), s[1])
+	require.Equal(t, path.Join(dispenser.EntityPropertyPath(entityNS), "baa", "aaa", "suk_baa_aaa_s.bin"), s[2])
 }
 
 func TestDispenser_AddActionFile(t *testing.T) {

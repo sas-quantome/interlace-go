@@ -49,8 +49,8 @@ func TestContainer_Search(t *testing.T) {
 	for i := range interlacer.BinData {
 		idxMap[interlacer.BinData[i].FileName] = i
 		fmt.Printf("%s %s\n", gobPath, interlacer.BinData[i].FileName)
-		assets[i] = NewContainer(interlacer.BinData[i].FileName)
-		assets[i].GetDataFromFile(gobPath, false)
+		assets[i] = NewContainer(path.Join(gobPath, interlacer.BinData[i].FileName))
+		assets[i].GetDataFromFile(gobPath, true)
 		require.NoError(t, assets[i].Err)
 		fmt.Println("Property:", assets[i].Len, "rows:", assets[i].Name)
 	}

@@ -158,7 +158,7 @@ func (s *Streamer) IntegrityCheck() error {
 
 func (s *Streamer) CmdEncode(conn net.Conn, cmd string) error {
 	s.mu.RLock()
-	defer s.mu.RUnlock() // Defer unlock to ensure safety during encode
+	defer s.mu.RUnlock() // Defer unlocking to ensure safety during encode
 
 	if len(cmd) < 2 || len(cmd) > CmdMaxLen {
 		return fmt.Errorf("invalid command length: %d", len(cmd))

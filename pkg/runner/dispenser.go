@@ -18,33 +18,32 @@ import (
 The dispenser's purpose is to provide a consistent file system that does not change and guarantees the reproduction of
 data processing events and entity datasets across distributed systems. The dispenser directory structure is designed to
 organize data related to agents, entities, and events hierarchically. It follows a specific naming convention to ensure
-data organization is unique and clear. The directory structure is designed to facilitate efficient data retrieval and
-management by organizing data based on ontology concepts, meaningful asset names, and building a version time tag. The
-agent directory stores the agent-specific data, including configuration and pipeline execution scripts. The event
-directory stores the event-specific data, including workflow logs and Bash scripts generated at runtime. The entity
-directory stores entity-specific data, including unique text catalogs, controlled vocabulary enums, and property
-datasets, in GOB-compressed files. This system journals all processing events, and the overall outcome serves as a
-knowledge hub for further analysis. Most importantly, it ensures data consistency across distributed systems and
-facilitates data sharing and reproducibility.
+data organization is unique and clear.
 
-<base>/agent
-<base>/agent/configuration
-<base>/agent/execution/<yyyymm>
-<base>/agent/execution/<yyyymm>/<ddhhmmss>
-<base>/event
-<base>/event/<conceptTerm>
-<base>/event/<conceptTerm>/<workflowID>
-<base>/event/<conceptTerm>/<workflowID>/<yyyymmddhhmmss>
-<base>/event/<conceptTerm>/<workflowID>/<yyyymmddhhmmss>/action
-<base>/event/<conceptTerm>/<workflowID>/<yyyymmddhhmmss>/function
-<base>/event/<conceptTerm>/<workflowID>/<yyyymmddhhmmss>/artifact
-<base>/entity
-<base>/entity/<conceptTerm>
-<base>/entity/<conceptTerm>/<assetTerm>
-<base>/entity/<conceptTerm>/<assetTerm>/<yyyymmddhhmmss>
-<base>/entity/<conceptTerm>/<assetTerm>/<yyyymmddhhmmss>/catalog
-<base>/entity/<conceptTerm>/<assetTerm>/<yyyymmddhhmmss>/enumeration
-<base>/entity/<conceptTerm>/<assetTerm>/<yyyymmddhhmmss>/property
+- The agent directory handles agent configuration and pipeline execution scripts.
+- The event directory captures workflow logs and Bash scripts generated at runtime.
+- The entity directory stores text catalogs, controlled vocabulary enums, and data property binary files.
+
+This system journals all processing events. The outcome compounds and establishes a knowledge hub for downstream analysis.
+
+<interlaceBase>/agent
+<interlaceBase>/agent/configuration
+<interlaceBase>/agent/execution/<yyyymm>
+<interlaceBase>/agent/execution/<yyyymm>/<ddhhmmss>
+<interlaceBase>/event
+<interlaceBase>/event/<conceptTerm>
+<interlaceBase>/event/<conceptTerm>/<workflowID>
+<interlaceBase>/event/<conceptTerm>/<workflowID>/<yyyymmddhhmmss>
+<interlaceBase>/event/<conceptTerm>/<workflowID>/<yyyymmddhhmmss>/action
+<interlaceBase>/event/<conceptTerm>/<workflowID>/<yyyymmddhhmmss>/function
+<interlaceBase>/event/<conceptTerm>/<workflowID>/<yyyymmddhhmmss>/artifact
+<interlaceBase>/entity
+<interlaceBase>/entity/<conceptTerm>
+<interlaceBase>/entity/<conceptTerm>/<assetTerm>
+<interlaceBase>/entity/<conceptTerm>/<assetTerm>/<yyyymmddhhmmss>
+<interlaceBase>/entity/<conceptTerm>/<assetTerm>/<yyyymmddhhmmss>/catalog
+<interlaceBase>/entity/<conceptTerm>/<assetTerm>/<yyyymmddhhmmss>/enumeration
+<interlaceBase>/entity/<conceptTerm>/<assetTerm>/<yyyymmddhhmmss>/property
 
 */
 
@@ -95,7 +94,7 @@ type EventFiller struct {
 type DataPartition struct {
 	cid string // Content ID (Segment)
 	pid string // Partition ID (Fragment)
-	gfn string // Gob Filename
+	bfn string // Binary Filename
 }
 
 // NewDispenser creates and initializes a new Dispenser instance.
@@ -228,7 +227,7 @@ func (d *Dispenser) AddPropertyFile(ns DispenserNamespace, cid, pid, fileName st
 		p := DataPartition{
 			cid: cid,
 			pid: pid,
-			gfn: fileName,
+			bfn: fileName,
 		}
 		entity.Property = append(entity.Property, p)
 	}
@@ -289,7 +288,7 @@ func (d *Dispenser) getEntityPath(ns DispenserNamespace, subDirs ...string) stri
 	d.mu.RLock()
 	defer d.mu.RUnlock()
 	if e, ok := d.Entity[ns]; ok {
-		// Base: <base>/entity/<concept>/<asset>/<timetag>
+		// Base: <interlaceBase>/entity/<concept>/<asset>/<timetag>
 		base := filepath.Join(d.EntityPath(), e.Concept, e.Asset, e.TimeTag)
 		return filepath.Join(append([]string{base}, subDirs...)...)
 	}
@@ -301,7 +300,7 @@ func (d *Dispenser) getEventPath(ns DispenserNamespace, subDirs ...string) strin
 	d.mu.RLock()
 	defer d.mu.RUnlock()
 	if e, ok := d.Event[ns]; ok {
-		// Base: <base>/event/<concept>/<workflow>/<timetag>
+		// Base: <interlaceBase>/event/<concept>/<workflow>/<timetag>
 		base := filepath.Join(d.EventPath(), e.Concept, e.Workflow, e.TimeTag)
 		return filepath.Join(append([]string{base}, subDirs...)...)
 	}
@@ -434,19 +433,19 @@ func (d *Dispenser) EntityPropertyFiles(ns DispenserNamespace) []string {
 
 	for _, p := range entity.Property {
 		// Construct a path based on partition depth:
-		// 1. <base>/<cid>/<pid>/<file>
-		// 2. <base>/<cid>/<file>
-		// 3. <base>/<file>
+		// 1. <interlaceBase>/<cid>/<pid>/<file>
+		// 2. <interlaceBase>/<cid>/<file>
+		// 3. <interlaceBase>/<file>
 
 		var fullPath string
 		if p.cid != "" {
 			if p.pid != "" {
-				fullPath = filepath.Join(baseDir, p.cid, p.pid, p.gfn)
+				fullPath = filepath.Join(baseDir, p.cid, p.pid, p.bfn)
 			} else {
-				fullPath = filepath.Join(baseDir, p.cid, p.gfn)
+				fullPath = filepath.Join(baseDir, p.cid, p.bfn)
 			}
 		} else {
-			fullPath = filepath.Join(baseDir, p.gfn)
+			fullPath = filepath.Join(baseDir, p.bfn)
 		}
 		files = append(files, fullPath)
 	}
@@ -638,9 +637,9 @@ func (d *Dispenser) CollectEntityPropertyFiles(ns DispenserNamespace, pattern, f
 				cidPath := filepath.Join(rootPath, name)
 				d.walkCIDDir(name, cidPath, pattern, filterPID, &partitions)
 			}
-		} else if isGobFile(name) && matchFilter(name, pattern) {
+		} else if strings.HasSuffix(name, ".bin") && matchFilter(name, pattern) {
 			// Level 0: Root file
-			partitions = append(partitions, DataPartition{gfn: name})
+			partitions = append(partitions, DataPartition{bfn: name})
 		}
 	}
 
@@ -666,9 +665,9 @@ func (d *Dispenser) walkCIDDir(cid, pathStr, pattern, filterPID string, results 
 				pidPath := filepath.Join(pathStr, name)
 				d.walkPIDDir(cid, name, pidPath, pattern, results)
 			}
-		} else if isGobFile(name) && matchFilter(name, pattern) {
+		} else if strings.HasSuffix(name, ".bin") && matchFilter(name, pattern) {
 			// File inside the CID folder
-			*results = append(*results, DataPartition{cid: cid, gfn: name})
+			*results = append(*results, DataPartition{cid: cid, bfn: name})
 		}
 	}
 }
@@ -677,9 +676,9 @@ func (d *Dispenser) walkPIDDir(cid, pid, pathStr, pattern string, results *[]Dat
 	entries, _ := os.ReadDir(pathStr)
 	for _, e := range entries {
 		name := e.Name()
-		if !e.IsDir() && isGobFile(name) && matchFilter(name, pattern) {
+		if !e.IsDir() && strings.HasSuffix(name, ".bin") && matchFilter(name, pattern) {
 			// File inside the PID folder
-			*results = append(*results, DataPartition{cid: cid, pid: pid, gfn: name})
+			*results = append(*results, DataPartition{cid: cid, pid: pid, bfn: name})
 		}
 	}
 }
@@ -694,11 +693,7 @@ func (d *Dispenser) SwapAssetPath(entityNS DispenserNamespace, assetName, queryA
 	return strings.Replace(d.EntityPropertyPath(entityNS), assetName, queryAssetName, -1)
 }
 
-// Helpers
-func isGobFile(name string) bool {
-	return strings.HasSuffix(name, ".gob") || strings.HasSuffix(name, ".gob.gz")
-}
-
+// matchFilter checks if the given name contains the specified pattern or if the pattern is empty, returning true if so.
 func matchFilter(name, pattern string) bool {
 	return pattern == "" || strings.Contains(name, pattern)
 }

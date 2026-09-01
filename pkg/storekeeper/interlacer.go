@@ -56,7 +56,6 @@ type BinAsset struct {
 	IdxOrder ItemOrderType
 
 	// Explicit stacks (Same as before)
-	StackZDT runner.Stack[[]byte]
 	StackSDT runner.Stack[string]
 	StackIDT runner.Stack[int64]
 	StackNDT runner.Stack[int32]

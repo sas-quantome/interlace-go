@@ -138,7 +138,7 @@ func TestValidCat(t *testing.T) {
 
 func TestGIndexer_NewGIndexer(t *testing.T) {
 	gid := NewGIndexer(3)
-	require.Equal(t, int64(3), gid.mapSize)
+	require.Equal(t, float64(3), gid.mapSize)
 }
 
 func TestGIndexer_Set(t *testing.T) {
