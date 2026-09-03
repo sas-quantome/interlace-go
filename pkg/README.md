@@ -1,4 +1,4 @@
-###### September 3, 2026: interlace-go pkg readme v8
+###### September 3, 2026: interlace-go pkg readme v9
 
 # PKG
 
@@ -16,7 +16,7 @@
 8) [Versioner](#8-versioner)
 9) [Directory Architecture: Entities and Events](#9-directory-architecture-entities-and-events)
 10) [Binary File Nomenclature](#10-binary-file-nomenclature)
-11) [11. Binary File Integrity Check](#11-binary-file-integrity-check)
+11) [Binary File Integrity Check](#11-binary-file-integrity-check)
 
 ### 1. Contractor
 
