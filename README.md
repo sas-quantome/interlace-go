@@ -1,10 +1,10 @@
-###### September 3, 2026: interlace-go readme v5
+###### September 3, 2026: interlace-go readme v6
 
 # interlace-go
 
-![interlace-go](assets/interlace-go.png)
+Ultralight Go packages for vertically partitioned data assets.
 
-Ultralight Go packages for vertically partitioned data assets
+![interlace-go](assets/interlace-go.png)
 
 ## Contents
 
