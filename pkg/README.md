@@ -2,7 +2,7 @@
 
 # PKG
 
-![pkg](../assets/pkg.png)
+![inside-interlace](../assets/inside-interlace.png)
 
 ## Contents
 
@@ -171,7 +171,7 @@ To prove to the LLM exactly what state changes occurred, the **event** Directory
 - **Function**: Preserves the exact Bash scripts executed to generate the data, serving as an immutable computational footprint.
 - **Action**: Captures the resulting execution logs, natively mapped to their corresponding scripts in the **Function** folder.
 
-By rigidly decoupling the architecture into these **Entity & Event** pathways, **Interlace** formally establishes a "Brain and Muscle" paradigm. The deterministic Go binaries (the "muscle") rapidly parse and crunch the parallel **property** arrays, while the LLM (the "brain") leverages the self-documenting **Entity & Event** semantics to understand relationships, logistics, and execution provenance without hallucinating the refined context.
+By rigidly decoupling the architecture into these **Entity & Event** pathways, **Interlace** formally establishes a "Brain and Muscle" paradigm. The deterministic Go binaries (the "muscle") rapidly parse and crunch the parallel **property** arrays, while the LLM (the "brain") leverages the self-documenting **Entity & Event** semantics to understand relationships, logistics, and execution provenance without hallucinating the refined context. The **Interlace Architecture** supports *artificial organization*.
 
 ```mermaid
 erDiagram
