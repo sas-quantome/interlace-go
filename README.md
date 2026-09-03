@@ -1,4 +1,4 @@
-###### September 1, 2026: interlace-go readme v2
+###### September 3, 2026: interlace-go readme v3
 
 # interlace-go
 
@@ -14,7 +14,7 @@
 
 ### 1. Introduction
 
-The **interlace-go** packages help innovators refine data and consolidate it into a ready state for any downstream tool. It is architected to ingest and synthesize disparate datasets into immutable, vertically partitioned, and strongly typed binary arrays. This parallel substrate permits seamless, additive schema evolution while maintaining absolute data integrity. Most importantly, it enables programming command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
+The **interlace-go** [packages](pkg/README.md) help innovators refine data and consolidate it into a ready state for any downstream tool. It is architected to ingest and synthesize disparate datasets into immutable, vertically partitioned, and strongly typed binary arrays. This parallel substrate permits seamless, additive schema evolution while maintaining absolute data integrity. Most importantly, it enables programming command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
 
 ### 2. Installation
 
