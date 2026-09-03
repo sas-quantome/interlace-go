@@ -85,7 +85,7 @@ The above command should create the `interlace-go` directory in your local machi
 test                           Run tests
 coverage                       Run coverage report
 vet                            Run code issues detection
-clean                          Remove the bin folder and test files leaving the download data files intact
+clean                          Remove the bin folder and test files
 ```
 
 Start with `test` and finish with `clean`. Example running make:
