@@ -1,4 +1,4 @@
-###### September 6, 2026: interlace-go readme v7
+###### September 6, 2026: interlace-go readme v8
 
 # interlace-go
 
@@ -16,7 +16,7 @@ Ultralight Go library for vertically partitioned data assets.
 
 ### 1. Introduction
 
-The **interlace-go** [library](pkg/README.md) helps innovators refine data and consolidate it into a ready state for any downstream tool. It is architected to ingest and synthesize disparate datasets into immutable, vertically partitioned, and strongly typed binary arrays. This parallel substrate permits seamless, additive schema evolution while maintaining absolute data integrity. Most importantly, it enables programming command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
+The **interlace-go** [library] helps innovators refine data and consolidate it into a ready state for any downstream tool. It is architected to ingest and synthesize disparate datasets into immutable, vertically partitioned, and strongly typed binary arrays. This parallel substrate permits seamless, additive schema evolution while maintaining absolute data integrity. Most importantly, it enables programming command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
 
 ### 2. Installation
 
@@ -99,8 +99,10 @@ make test
 
 ### 4. Usage
 
-The following examples demonstrate how to use the **interlace-go** library.
+The following examples demonstrate how to use the **interlace-go** [library].
 
 ### 5. License
 
 This project is licensed under the Apache License Version 2.0 – see the [LICENSE](LICENSE) file for details.
+
+[library]: https://github.com/sas-quantome/interlace-go/tree/main/pkg/#PKG
