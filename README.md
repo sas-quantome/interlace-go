@@ -1,8 +1,8 @@
-###### September 3, 2026: interlace-go readme v6
+###### September 6, 2026: interlace-go readme v7
 
 # interlace-go
 
-Ultralight Go packages for vertically partitioned data assets.
+Ultralight Go library for vertically partitioned data assets.
 
 ![interlace-go](assets/interlace-go.png)
 
@@ -16,7 +16,7 @@ Ultralight Go packages for vertically partitioned data assets.
 
 ### 1. Introduction
 
-The **interlace-go** [packages](pkg/README.md) help innovators refine data and consolidate it into a ready state for any downstream tool. It is architected to ingest and synthesize disparate datasets into immutable, vertically partitioned, and strongly typed binary arrays. This parallel substrate permits seamless, additive schema evolution while maintaining absolute data integrity. Most importantly, it enables programming command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
+The **interlace-go** [library](pkg/README.md) helps innovators refine data and consolidate it into a ready state for any downstream tool. It is architected to ingest and synthesize disparate datasets into immutable, vertically partitioned, and strongly typed binary arrays. This parallel substrate permits seamless, additive schema evolution while maintaining absolute data integrity. Most importantly, it enables programming command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
 
 ### 2. Installation
 
@@ -99,7 +99,7 @@ make test
 
 ### 4. Usage
 
-The following examples demonstrate how to use the **interlace-go** packages.
+The following examples demonstrate how to use the **interlace-go** library.
 
 ### 5. License
 
