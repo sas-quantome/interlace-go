@@ -1,4 +1,4 @@
-###### September 3, 2026: interlace-go pkg readme v9
+###### September 9, 2026: interlace-go pkg readme v10
 
 # PKG
 
@@ -540,24 +540,24 @@ To enable autonomous data routing without parsing heavy file headers, the archit
 <prefix>_<dataPropertyName>_<role>.<suffix>
 ```
 
-| Component | File Code | Array Structure / Data Type            | Function / Algorithm               |
-|-----------|-----------|----------------------------------------|------------------------------------|
-| Prefix    | suk_      | Sorted unique key 1D array             | Binary search O(log n)             |
-| Prefix    | sdk_      | Sorted duplicate key 1D array          | Binary search O(log n) + O(k)      |
-| Prefix    | udk_      | Unsorted duplicate key 1D array        | Linear search all O(k) or one O(n) |
-| Prefix    | uuk_      | Unsorted unique key 1D array           | Linear search O(n)                 |
-| Role      | _cv_      | 1-Byte unsigned integer array (uint8)  | Controlled vocabulary enumerator   |
-| Role      | _hash_id_ | Integer array (uint32 or uint64)       | Unique text cataloguer             |
-| Role      | _set_     | String array                           | Pipe-delimited string values       |
-| Role      | _s        | String array                           | String container                   |
-| Role      | _d        | 1-Byte unsigned integer array (uint8)  | Byte container                     |
-| Role      | _u        | 4-Byte unsigned integer array (uint32) | Small unsigned integer container   |
-| Role      | _m        | 8-Byte unsigned integer array (uint64) | Large unsigned integer container   |
-| Role      | _f        | 8-Byte float array (float64)           | Float container                    |
-| Role      | _n        | 4-Byte integer array (int32)           | Small integer container            |
-| Role      | _i        | 8-Byte integer array (int64)           | Large integer container            |
-| Role      | _z        | Array of byte arrays                   | Byte array container               |
-| Suffix    | .bin      | Single-native-type 1D array Go binary  | Fast-read storage                  |
+| Component | File Code   | Array Structure / Data Type            | Function / Algorithm               |
+|-----------|-------------|----------------------------------------|------------------------------------|
+| Prefix    | `suk_`      | Sorted unique key 1D array             | Binary search O(log n)             |
+| Prefix    | `sdk_`      | Sorted duplicate key 1D array          | Binary search O(log n) + O(k)      |
+| Prefix    | `udk_`      | Unsorted duplicate key 1D array        | Linear search all O(k) or one O(n) |
+| Prefix    | `uuk_`      | Unsorted unique key 1D array           | Linear search O(n)                 |
+| Role      | `_cv_`      | 1-Byte unsigned integer array (uint8)  | Controlled vocabulary enumerator   |
+| Role      | `_hash_id_` | Integer array (uint32 or uint64)       | Unique text cataloguer             |
+| Role      | `_set_`     | String array                           | Pipe-delimited string values       |
+| Role      | `_s`        | String array                           | String container                   |
+| Role      | `_d`        | 1-Byte unsigned integer array (uint8)  | Byte container                     |
+| Role      | `_u`        | 4-Byte unsigned integer array (uint32) | Small unsigned integer container   |
+| Role      | `_m`        | 8-Byte unsigned integer array (uint64) | Large unsigned integer container   |
+| Role      | `_f`        | 8-Byte float array (float64)           | Float container                    |
+| Role      | `_n`        | 4-Byte integer array (int32)           | Small integer container            |
+| Role      | `_i`        | 8-Byte integer array (int64)           | Large integer container            |
+| Role      | `_z`        | Array of byte arrays                   | Byte array container               |
+| Suffix    | `.bin`      | Single-native-type 1D array Go binary  | Fast-read storage                  |
 
 ### 11. Binary File Integrity Check
 
