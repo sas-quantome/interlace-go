@@ -1,8 +1,8 @@
-###### September 6, 2026: interlace-go readme v8
+###### September 9, 2026: interlace-go readme v10
 
 # interlace-go
 
-Ultralight Go library for vertically partitioned data assets.
+Welcome to **interlace-go**! An ultralight Go library for vertically partitioned, columnar specific data type assets that use parallel arrays to support additive schema evolution.
 
 ![interlace-go](assets/interlace-go.png)
 
@@ -16,7 +16,11 @@ Ultralight Go library for vertically partitioned data assets.
 
 ### 1. Introduction
 
-The **interlace-go** [library] helps innovators refine data and consolidate it into a ready state for any downstream tool. It is architected to ingest and synthesize disparate datasets into immutable, vertically partitioned, and strongly typed binary arrays. This parallel substrate permits seamless, additive schema evolution while maintaining absolute data integrity. Most importantly, it enables programming command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
+Data can be governed differently. A database is a transient tool and should be treated as a disposable secondary store. True independence from vendor lock-in requires data products built for additive schema evolution, free of infrastructure blotting, and liberated from archaic standards.
+
+The **interlace-go** [library] helps innovators refine data and consolidate it into a ready state for any downstream tool. It is architected to ingest and synthesize disparate datasets into immutable, vertically partitioned, and strongly typed binary arrays. This parallel substrate permits seamless, additive schema evolution while maintaining absolute data integrity. 
+
+Most importantly, it enables programming command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
 
 ### 2. Installation
 
