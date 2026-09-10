@@ -1,4 +1,4 @@
-###### September 9, 2026: interlace-go readme v10
+###### September 10, 2026: interlace-go readme v12
 
 # interlace-go
 
@@ -103,7 +103,15 @@ make test
 
 ### 4. Usage
 
-The following examples demonstrate how to use the **interlace-go** [library].
+The following GitHub repositories demonstrate how to use the **interlace-go** [library].
+
+#### 4.1 [interlace-ex](https://github.com/sas-quantome/interlace-ex)
+
+Learn how to code and build a data stack with the **interlace-ex** command-line examples. This open-source educational repository guides you through consolidating human gene data, including products, interactants, genetic variants, and diseases, as a hands-on data refinement exercise. 15 Go programs are offered as starting models for creating robust datasets. The ensemble of these Go programs creates one **Interlace Entity**, named *Gene*, and 14 *Gene* **Interlace Assets**.
+
+#### 4.2 [interlace-do](https://github.com/sas-quantome/interlace-do)
+
+Once you have built the *Gene* data stack, you can use the **interlace-do** toolset to learn how to search and retrieve data from any **Interlace Asset**. This repository provides more than 40 command-line examples to help you do your own Gene queries.
 
 ### 5. License
 
