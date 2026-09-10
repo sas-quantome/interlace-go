@@ -1,4 +1,4 @@
-###### September 10, 2026: interlace-go readme v12
+###### September 10, 2026: interlace-go readme v13
 
 # interlace-go
 
@@ -111,7 +111,7 @@ Learn how to code and build a data stack with the **interlace-ex** command-line 
 
 #### 4.2 [interlace-do](https://github.com/sas-quantome/interlace-do)
 
-Once you have built the *Gene* data stack, you can use the **interlace-do** toolset to learn how to search and retrieve data from any **Interlace Asset**. This repository provides more than 40 command-line examples to help you do your own Gene queries.
+Once you have built the *Gene* data stack, you can use the **interlace-do** toolset to learn how to search and retrieve data from any **Interlace Asset**. This repository provides more than 40 command-line examples to help you do your own *Gene* queries.
 
 ### 5. License
 
