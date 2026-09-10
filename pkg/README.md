@@ -1,4 +1,4 @@
-###### September 9, 2026: interlace-go pkg readme v10
+###### September 10, 2026: interlace-go pkg readme v11
 
 # PKG
 
@@ -26,7 +26,7 @@ Provides **interlace-go** applications with a consistent workspace and access to
 
 ### 2. Cowriter
 
-Manages high-throughput file output. It orchestrates file handlers, applies Gzip compression, caches formatted, writes (e.g., tuples) into memory buffers, and flushes them to disk. It also interfaces directly with system-level sort commands, then safely removes temporary files, and resets them for reuse.
+Manages high-throughput file output. It orchestrates file handlers, applies Gzip compression, caches formatted-writes (e.g., tuples) into memory buffers, and flushes them to disk. It also interfaces directly with system-level sort commands, safely removes temporary files, and resets them for reuse.
 
 - [Cowriter](./cowriter/cowriter.go)
 - [Cowriter Test](./cowriter/cowriter_test.go)
@@ -113,7 +113,7 @@ This pathway stores the actual refined data. It is organized hierarchically to p
 
 - **Identity & Asset Folders:** The top-level *Identity* directory uses strict ontology concepts to name the data domain (e.g., gene or sequence_variant). Within this identity, *Asset* folders group the data by a specific thematic benefit (e.g., molecular_interaction, genetic_variant).
 - **TimeTag Folders:** Inside the *Asset* folder is the *TimeTag*, a 14-digit timestamp (e.g., YYYYMMDDHHMMSS) that represents the exact release version. Once data is published under a *TimeTag*, it becomes strictly immutable and read-only. This versioned data block is a "shared nothing" environment, existing entirely independently of external data assets.
-- **Structural Partitions:** The *TimeTag* folder is strictly partitioned into three subdirectories: **catalog** (storing unique text strings via 8-byte hashes), **enumeration** (managing 1-byte controlled vocabularies), and **property** (housing the actual **interlace-go** binary data arrays).
+- **Structural Partitions:** The *TimeTag* folder is strictly organized into three subdirectories: **catalog** (storing unique text strings via 8-byte hashes), **enumeration** (managing 1-byte controlled vocabularies), and **property** (housing the actual **interlace-go** binary data arrays).
 
 ```mermaid
 erDiagram
@@ -209,7 +209,7 @@ erDiagram
     event only one to one or more "Identity Directory Name" : has-unique-concept
 ```
 
-#### Two Entities Tree Example
+#### Tree Example of Two Entities: DNA and Gene
 
 ```text
 interlace-ex
