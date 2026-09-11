@@ -1,4 +1,4 @@
-###### September 11, 2026: interlace-go readme v17
+###### September 11, 2026: interlace-go readme v18
 
 # interlace-go
 
@@ -24,7 +24,7 @@ The Interlace Go packages enable you to program command-line tools for high-spee
 
 ### 2. Installation
 
-Create your codebase, initialize Git, and add the **interlace-go** package as a dependency. We organize our repositories as follows, and it is not a requirement:
+Create your codebase, initialize Git, and add the **interlace-go** package as a dependency. We organize our repositories as follows, but it is not a requirement:
 
 ```text
 YourGoCodeBaseName
@@ -79,7 +79,7 @@ go get github.com/sas-quantome/interlace-go
 
 ### 3. Test
 
-To test **interlace-go**, you must first clone the **interlace-go** repository and then run make.
+To test **interlace-go**, you must first clone the **interlace-go** repository and then execute the Makefile.
 
 ```shell
 git clone https://github.com/sas-quantome/interlace-go.git
@@ -94,7 +94,7 @@ vet                            Run code issues detection
 clean                          Remove the bin folder and test files
 ```
 
-Start with `test` and finish with `clean`. Example running make:
+Start with `test` and finish with `clean`, for example:
 
 ```shell
 cd interlace-go
