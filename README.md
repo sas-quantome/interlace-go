@@ -1,4 +1,4 @@
-###### September 11, 2026: interlace-go readme v15
+###### September 11, 2026: interlace-go readme v16
 
 # interlace-go
 
@@ -18,7 +18,7 @@ At Quantome, we can govern data differently by keeping our data assets free from
 
 A database is a transient tool and can be treated as a disposable secondary store. True independence from vendor lock-in requires data products built for additive schema evolution, free of infrastructure bloat, and liberated from archaic standards.
 
-The **interlace-go** library helps innovators refine data and consolidate it into a ready state for any downstream tool. It is architected to ingest and synthesize disparate datasets into immutable, vertically partitioned, and strongly typed binary arrays. This parallel substrate permits seamless, additive schema evolution while maintaining absolute data integrity. The [PKG] gives brief functional details.
+The **interlace-go** library helps innovators refine data and consolidate it into a ready state for any downstream tool, like pluripotent stem cells. It ingests and synthesizes disparate datasets into immutable, vertically partitioned, strongly typed binary arrays. This parallel substrate enables seamless, additive schema evolution while maintaining absolute data integrity and agile streaming fluidity. [PKG] gives a brief overview of these details.
 
 The Interlace Go packages enable you to program command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
 
