@@ -1,4 +1,4 @@
-###### September 11, 2026: interlace-go readme v16
+###### September 11, 2026: interlace-go readme v17
 
 # interlace-go
 
@@ -24,7 +24,7 @@ The Interlace Go packages enable you to program command-line tools for high-spee
 
 ### 2. Installation
 
-Create your code base, initialize Git, and add the **interlace-go** package as a dependency. A bare-bone Go repository will look similar to the following:
+Create your codebase, initialize Git, and add the **interlace-go** package as a dependency. We organize our repositories as follows, and it is not a requirement:
 
 ```text
 YourGoCodeBaseName
@@ -56,7 +56,7 @@ YourGoCodeBaseName
            └── YourPkg2_test.go
 ```
 
-Move into `YourGoCodeBaseName` directory, turn it into a Git repository, and initialize your Go modules where `YourGoModuleName` may look like: `github.com/YourCodeBase/YourGoCodeBaseName`.
+Move into `YourGoCodeBaseName` directory, turn it into a Git repository, and initialize your Go modules where `YourGoModuleName` may look like: `github.com/my-project/interlace-go`.
 
 ```shell
 cd YourGoCodeBaseName
