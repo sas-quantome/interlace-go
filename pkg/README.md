@@ -1,4 +1,4 @@
-###### September 10, 2026: interlace-go pkg readme v11
+###### September 10, 2026: interlace-go pkg readme v12
 
 # PKG
 
@@ -53,7 +53,7 @@ The execution controller of the SDK, housing critical submodules like **Manager*
 - [Dispenser Test](./runner/dispenser_test.go)
 - [Downloader](./runner/downloader.go)
 - [Downloader Test](./runner/downloader_test.go)
-- [Tramer](./runner/framer.go)
+- [Framer](./runner/framer.go)
 - [Framer Test](./runner/framer_test.go)
 - [Helper](./runner/helper.go)
 - [Helper Test](./runner/helper_test.go)
@@ -69,7 +69,7 @@ The execution controller of the SDK, housing critical submodules like **Manager*
 - [Stacker Test](./runner/stacker_test.go)
 - [Validator](./runner/validator.go)
 - [Validator Test](./runner/validator_test.go)
-- [Wordfinder](./runner/wordfinder.go)
+- [WordFinder](./runner/wordfinder.go)
 
 ### 6. Storekeeper
 

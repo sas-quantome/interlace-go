@@ -1,4 +1,4 @@
-###### September 11, 2026: interlace-go readme v18
+###### September 11, 2026: interlace-go readme v19
 
 # interlace-go
 
@@ -56,7 +56,7 @@ YourGoCodeBaseName
            └── YourPkg2_test.go
 ```
 
-Move into `YourGoCodeBaseName` directory, turn it into a Git repository, and initialize your Go modules where `YourGoModuleName` may look like: `github.com/my-project/interlace-go`.
+Move into `YourGoCodeBaseName` directory, turn it into a Git repository, and initialize your Go modules where `YourGoModuleName` may look like: `github.com/my-project/my-interlace`.
 
 ```shell
 cd YourGoCodeBaseName
