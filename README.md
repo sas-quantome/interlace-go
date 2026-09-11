@@ -1,8 +1,8 @@
-###### September 10, 2026: interlace-go readme v13
+###### September 11, 2026: interlace-go readme v14
 
 # interlace-go
 
-Welcome to **interlace-go**! An ultralight Go library for vertically partitioned, columnar specific data type assets that use parallel arrays to support additive schema evolution.
+At Quantome, we can govern data differently by keeping our data assets free from infrastructure bloat, archaic standards, and vendor lock-in. To honor these principles, we are sharing our ultralight Go library for free and staying committed to keeping it thin.
 
 ![interlace-go](assets/interlace-go.png)
 
@@ -16,11 +16,11 @@ Welcome to **interlace-go**! An ultralight Go library for vertically partitioned
 
 ### 1. Introduction
 
-Data can be governed differently. A database is a transient tool and should be treated as a disposable secondary store. True independence from vendor lock-in requires data products built for additive schema evolution, free of infrastructure blotting, and liberated from archaic standards.
+A database is a transient tool and should be treated as a disposable secondary store. True independence from vendor lock-in requires data products built for additive schema evolution, free of infrastructure bloat, and liberated from archaic standards.
 
-The **interlace-go** [library] helps innovators refine data and consolidate it into a ready state for any downstream tool. It is architected to ingest and synthesize disparate datasets into immutable, vertically partitioned, and strongly typed binary arrays. This parallel substrate permits seamless, additive schema evolution while maintaining absolute data integrity. 
+The **interlace-go** library helps innovators refine data and consolidate it into a ready state for any downstream tool. It is architected to ingest and synthesize disparate datasets into immutable, vertically partitioned, and strongly typed binary arrays. This parallel substrate permits seamless, additive schema evolution while maintaining absolute data integrity. The [PKG] gives brief functional details.
 
-Most importantly, it enables programming command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
+The Interlace Go packages enable you to program command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
 
 ### 2. Installation
 
@@ -103,7 +103,7 @@ make test
 
 ### 4. Usage
 
-The following GitHub repositories demonstrate how to use the **interlace-go** [library].
+The following GitHub repositories demonstrate how to use the **interlace-go** library.
 
 #### 4.1 [interlace-ex](https://github.com/sas-quantome/interlace-ex)
 
@@ -117,4 +117,4 @@ Once you have built the *Gene* data stack, you can use the **interlace-do** tool
 
 This project is licensed under the Apache License Version 2.0 – see the [LICENSE](LICENSE) file for details.
 
-[library]: https://github.com/sas-quantome/interlace-go/tree/main/pkg/#PKG
+[PKG]: https://github.com/sas-quantome/interlace-go/tree/main/pkg/#PKG
