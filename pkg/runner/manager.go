@@ -16,6 +16,7 @@ import (
 	"os"
 	"os/user"
 	"path"
+	"slices"
 	"strconv"
 	"strings"
 	"sync"
@@ -331,11 +332,11 @@ func (mgr *Manager) CheckConfig(key ...string) error {
 			err = append(err, errors.New("missing args for: "+k))
 		}
 	}
-	m := mgr.config.SlotContains("inp-file")
+	m := slices.Concat(mgr.config.SlotContains("INP_FILE"), mgr.config.SlotContains("INP_PATH"))
 	for i := range m {
 		f := mgr.GetConfigString(m[i])
 		if ValidatePathExists(f) == false {
-			err = append(err, errors.New("invalid input file path: "+f))
+			err = append(err, errors.New("invalid input path: "+f))
 		}
 	}
 	if len(err) > 0 {
