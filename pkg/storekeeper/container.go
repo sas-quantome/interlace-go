@@ -54,7 +54,8 @@ type Container struct {
 	Ope                               OperatorType
 	DataType                          byte
 	Index                             []int
-	Property, Term, EnuKw             string
+	Property, EnuKw                   string
+	Term                              any
 	Err                               error
 
 	// Explicit clean slices, one to hold the underlying mMap.
@@ -161,10 +162,9 @@ func (co *Container) GetDataFromFile(dirPath string, ignoreVersion bool) {
 	}
 }
 
-// Search routes the search request to the appropriate generic handler.
-func (co *Container) Search(term string, operator OperatorType, findOneOnly, fromAt bool) {
+func (co *Container) resetSearch(term any, operator OperatorType, findOneOnly, fromAt bool) bool {
 	if co.Err != nil {
-		return
+		return false
 	}
 	co.Term = term
 	co.Ope = operator
@@ -178,6 +178,15 @@ func (co *Container) Search(term string, operator OperatorType, findOneOnly, fro
 
 	if co.IsNuc {
 		co.Found = false
+		return false
+	}
+
+	return true
+}
+
+// Search routes the search request to the appropriate generic handler, converts the term to the appropriate type.
+func (co *Container) Search(term string, operator OperatorType, findOneOnly, fromAt bool) {
+	if !co.resetSearch(term, operator, findOneOnly, fromAt) {
 		return
 	}
 
@@ -227,6 +236,31 @@ func (co *Container) Search(term string, operator OperatorType, findOneOnly, fro
 			return
 		}
 		searchFloat(co, co.FArr, n)
+	}
+}
+
+// SearchAny routes the search request to the appropriate generic handler.
+func (co *Container) SearchAny(term any, operator OperatorType, findOneOnly, fromAt bool) {
+	if !co.resetSearch(term, operator, findOneOnly, fromAt) {
+		return
+	}
+
+	// Dispatch based on Type
+	switch co.DataType {
+	case SDT:
+		searchGeneric(co, co.SArr, term.(string))
+	case IDT:
+		searchGeneric(co, co.IArr, term.(int64))
+	case NDT:
+		searchGeneric(co, co.NArr, term.(int32))
+	case DDT:
+		searchGeneric(co, co.DArr, term.(uint8))
+	case UDT:
+		searchGeneric(co, co.UArr, term.(uint32))
+	case MDT:
+		searchGeneric(co, co.MArr, term.(uint64))
+	case FDT:
+		searchFloat(co, co.FArr, term.(float64))
 	}
 }
 

@@ -55,19 +55,19 @@ func TestContainer_Search(t *testing.T) {
 		fmt.Println("Property:", assets[i].Len, "rows:", assets[i].Name)
 	}
 	fmt.Println()
-	search(t, assets, idxMap["sdk_entrez_gene_id_u.bin"], 3, "7157", false, false)
+	search(t, assets, idxMap["sdk_entrez_gene_id_u.bin"], 3, uint32(7157), false, false)
 	search(t, assets, idxMap["udk_gene_symbol_s.bin"], 2, "UTP6", false, false)
-	search(t, assets, idxMap["udk_pubmed_id_u.bin"], 1, "28394343", false, false)
+	search(t, assets, idxMap["udk_pubmed_id_u.bin"], 1, uint32(28394343), false, false)
 	search(t, assets, idxMap["udk_is_cancer_cell_s.bin"], 1, "Yes", true, false)
 	search(t, assets, idxMap["udk_is_cancer_cell_s.bin"], 1, "Yes", true, true)
-	search(t, assets, idxMap["sdk_entrez_gene_id_u.bin"], 1, "7157", true, false)
-	search(t, assets, idxMap["sdk_entrez_gene_id_u.bin"], 1, "7157", true, true)
-	search(t, assets, idxMap["sdk_entrez_gene_id_u.bin"], 1, "7157", true, true)
+	search(t, assets, idxMap["sdk_entrez_gene_id_u.bin"], 1, uint32(7157), true, false)
+	search(t, assets, idxMap["sdk_entrez_gene_id_u.bin"], 1, uint32(7157), true, true)
+	search(t, assets, idxMap["sdk_entrez_gene_id_u.bin"], 1, uint32(7157), true, true)
 }
 
-func search(t *testing.T, assets []*Container, qryIdx, expected int, term string, findOneOnly, fromAt bool) {
+func search(t *testing.T, assets []*Container, qryIdx, expected int, term any, findOneOnly, fromAt bool) {
 	assets[qryIdx].Term = term
-	assets[qryIdx].Search(term, EQ, findOneOnly, fromAt)
+	assets[qryIdx].SearchAny(term, EQ, findOneOnly, fromAt)
 	fmt.Println("Finding At Index:", assets[qryIdx].Index)
 	nFound := len(assets[qryIdx].Index)
 	require.Equal(t, expected, nFound)
