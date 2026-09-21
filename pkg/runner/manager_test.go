@@ -124,7 +124,7 @@ func TestManager_CheckConfig(t *testing.T) {
 	// Collect the configuration parameters (false conditions are ignored)
 	mgr.SetConfig("cid", cid, cid != "")
 	mgr.SetConfig("num", num, num >= 0)
-	mgr.SetConfig("iFn", iFn, iFn != "")
+	mgr.SetConfig(InpFile, iFn, iFn != "")
 	// Handle the log file parameter with the controlled vocabulary config key name
 	mgr.SetConfig(LogFile, *log, *log != "")
 	// Compute the boolean flags using the controlled vocabulary bit flag key name
@@ -135,12 +135,12 @@ func TestManager_CheckConfig(t *testing.T) {
 	mgr.SetBitFlag(MgrFlgNoDownload, *noDownload)
 	mgr.SetBitFlag(MgrFlgNoCommit, *noCommit)
 	// Check the configuration parameters that are expected beside the application parameters
-	require.NoError(t, mgr.CheckConfig("cid", "num", "iFn"))
+	require.NoError(t, mgr.CheckConfig("cid", "num", InpFile))
 	// The LogFile is not expected in this test
-	require.Error(t, mgr.CheckConfig("cid", "num", "iFn", LogFile))
+	require.Error(t, mgr.CheckConfig("cid", "num", InpFile, LogFile))
 	// Deleting the application name from the configuration makes the config test fail
 	mgr.DelConfig(AppName)
-	require.Error(t, mgr.CheckConfig("cid", "num", "iFn"))
+	require.Error(t, mgr.CheckConfig("cid", "num", InpFile))
 	// Start the stderr and stdout loggers for reporting accordingly to the user configuration
 	mgr.StartLoggers(flag.NFlag())
 	// If the user requested the help page or number of command line arguments is zero, show usage, and exit
@@ -150,7 +150,7 @@ func TestManager_CheckConfig(t *testing.T) {
 	// Commit the work
 	if mgr.GetBitFlag(MgrFlgNoCommit) == false {
 		// Look for the input file and printout the configuration parameters
-		require.True(t, ValidatePathExists(mgr.GetConfigString("iFn")))
+		require.True(t, ValidatePathExists(mgr.GetConfigString(InpFile)))
 		require.NoError(t, mgr.PrintConfig(os.Stdout, "\t"))
 		t.Log("Work is committed!")
 	}

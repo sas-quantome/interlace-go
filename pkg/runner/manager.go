@@ -334,9 +334,8 @@ func (mgr *Manager) CheckConfig(key ...string) error {
 	}
 	m := slices.Concat(mgr.config.SlotContains("INP_FILE"), mgr.config.SlotContains("INP_PATH"))
 	for i := range m {
-		f := mgr.GetConfigString(m[i])
-		if ValidatePathExists(f) == false {
-			err = append(err, errors.New("invalid input path: "+f))
+		if ValidatePathExists(m[i]) == false {
+			err = append(err, errors.New("path not found: "+m[i]))
 		}
 	}
 	if len(err) > 0 {
