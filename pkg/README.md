@@ -213,36 +213,36 @@ erDiagram
 
 ```text
 interlace-ex
-├── data << raw text flat-files
-│   ├── GCA_000001405.15_GRCh38_full_plus_hs38d1_analysis_set.fna.gz
+├── data
 │   ├── GCA_000001405_15_metadata.tsv.gz
-│   ├── HUMAN_9606_idmapping.dat.gz
-│   ├── NCBI2Reactome_All_Levels.txt
-│   ├── NCBI2Reactome_PE_Reactions.txt
-│   ├── ReactionPMIDS.txt
+│   ├── GCA_000001405.15_GRCh38_full_plus_hs38d1_analysis_set.fna.gz
+│   ├── gene_info.gz
+│   ├── gene_orthologs.gz
+│   ├── gene_summary.gz
 │   ├── gene2accession.gz
 │   ├── gene2ensembl.gz
 │   ├── gene2go.gz
 │   ├── gene2pubmed.gz
-│   ├── gene_info.gz
-│   ├── gene_orthologs.gz
-│   ├── gene_summary.gz
 │   ├── generifs_basic.gz
 │   ├── gsso.obo
 │   ├── gwas-catalog-ancestry.tsv.gz
 │   ├── gwas-catalog-associations-annotated.tsv.gz
 │   ├── gwas-efo-trait-mappings.tsv.gz
 │   ├── hp.obo
+│   ├── HUMAN_9606_idmapping.dat.gz
 │   ├── interactions.gz
 │   ├── mim2gene_medgen
 │   ├── mondo.obo
+│   ├── NCBI2Reactome_All_Levels.txt
+│   ├── NCBI2Reactome_PE_Reactions.txt
 │   ├── oba.obo
+│   ├── ReactionPMIDS.txt
 │   ├── string-protein-links.tsv.gz
 │   └── variant_summary.txt.gz
-├── entity << refined data assets
+├── entity
 │   ├── dna
 │   │   ├── metadata
-│   │   │   └── 20260823000000
+│   │   │   └── 20260922180031
 │   │   │       ├── catalog
 │   │   │       ├── enumeration
 │   │   │       │   └── uuk_metadata_cv_d_s.bin
@@ -257,45 +257,21 @@ interlace-ex
 │   │   │           ├── udk_region_s.bin
 │   │   │           └── udk_role_cv_d.bin
 │   │   ├── sequence
-│   │   │   └── 20260823000000
+│   │   │   └── 20260922180031
 │   │   │       ├── catalog
 │   │   │       ├── enumeration
 │   │   │       └── property
 │   │   │           ├── udk_nucleotide_aaa_u.bin
 │   │   │           ├── udk_nucleotide_aab_u.bin
 │   │   │           ├── udk_nucleotide_aac_u.bin
-│   │   │           ├── udk_nucleotide_aad_u.bin
-│   │   │           ├── udk_nucleotide_aae_u.bin
-│   │   │           ├── udk_nucleotide_aaf_u.bin
-│   │   │           ├── udk_nucleotide_aag_u.bin
-│   │   │           ├── udk_nucleotide_aah_u.bin
-│   │   │           ├── udk_nucleotide_aai_u.bin
-│   │   │           ├── udk_nucleotide_aaj_u.bin
-│   │   │           ├── udk_nucleotide_aak_u.bin
-│   │   │           ├── udk_nucleotide_aal_u.bin
-│   │   │           ├── udk_nucleotide_aam_u.bin
-│   │   │           ├── udk_nucleotide_aan_u.bin
-│   │   │           ├── udk_nucleotide_aao_u.bin
-│   │   │           ├── udk_nucleotide_aap_u.bin
-│   │   │           ├── udk_nucleotide_aaq_u.bin
-│   │   │           ├── udk_nucleotide_aar_u.bin
-│   │   │           ├── udk_nucleotide_aas_u.bin
-│   │   │           ├── udk_nucleotide_aat_u.bin
-│   │   │           ├── udk_nucleotide_aau_u.bin
-│   │   │           ├── udk_nucleotide_aav_u.bin
-│   │   │           ├── udk_nucleotide_aaw_u.bin
-│   │   │           ├── udk_nucleotide_aax_u.bin
-│   │   │           ├── udk_nucleotide_aay_u.bin
-│   │   │           ├── udk_nucleotide_aaz_u.bin
-│   │   │           ├── udk_nucleotide_aba_u.bin
-│   │   │           ├── udk_nucleotide_abb_u.bin
 ... 
 ... cut for brevity
 ...
+│   │   │           ├── udk_nucleotide_efe_u.bin
 │   │   │           ├── udk_nucleotide_eff_u.bin
 │   │   │           └── udk_nucleotide_efg_u.bin
 │   │   └── synonym
-│   │       └── 20260823000000
+│   │       └── 20260922180031
 │   │           ├── catalog
 │   │           ├── enumeration
 │   │           └── property
@@ -303,8 +279,9 @@ interlace-ex
 │   │               ├── udk_cid_s.bin
 │   │               └── udk_length_u.bin
 │   └── gene
+│       ├── 000
 │       ├── chemical_reaction
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       │   ├── suk_chemical_reaction_hash_id_m.bin
 │       │       │   └── uuk_chemical_reaction_text_s.bin
@@ -317,7 +294,7 @@ interlace-ex
 │       │           ├── udk_reaction_hash_id_m.bin
 │       │           └── udk_reactome_hsa_id_u.bin
 │       ├── function
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       │   ├── suk_function_hash_id_m.bin
 │       │       │   └── uuk_function_text_s.bin
@@ -328,7 +305,7 @@ interlace-ex
 │       │           ├── udk_rif_hash_id_m.bin
 │       │           └── udk_taxonomy_id_u.bin
 │       ├── genetic_variation
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       │   ├── suk_genetic_variation_hash_id_m.bin
 │       │       │   └── uuk_genetic_variation_text_s.bin
@@ -343,7 +320,7 @@ interlace-ex
 │       │           ├── udk_variation_hash_id_m.bin
 │       │           └── udk_variation_id_u.bin
 │       ├── genomic_variation
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       │   ├── suk_genomic_variation_hash_id_m.bin
 │       │       │   └── uuk_genomic_variation_text_s.bin
@@ -357,17 +334,26 @@ interlace-ex
 │       │           ├── udk_pubmed_id_u.bin
 │       │           └── udk_refsnp_id_u.bin
 │       ├── medical_genetics
-│       │   └── 20260818000000
+│       │   ├── 20260906180032
+│       │   │   ├── catalog
+│       │   │   ├── enumeration
+│       │   │   │   └── uuk_bit_flags_cv_s.bin
+│       │   │   └── property
+│       │   │       ├── sdk_entrez_gene_id_u.bin
+│       │   │       ├── udk_bit_flags_u.bin
+│       │   │       ├── udk_gene_symbol_s.bin
+│       │   │       ├── udk_medgen_cui_s.bin
+│       │   │       └── udk_omim_id_u.bin
+│       │   ├── 20260921140600
+│       │   │   ├── catalog
+│       │   │   ├── enumeration
+│       │   │   └── property
+│       │   └── 20260922174744
 │       │       ├── catalog
 │       │       ├── enumeration
-│       │       │   └── uuk_bit_flags_cv_s.bin
 │       │       └── property
-│       │           ├── sdk_entrez_gene_id_u.bin
-│       │           ├── udk_bit_flags_u.bin
-│       │           ├── udk_medgen_cui_s.bin
-│       │           └── udk_omim_id_u.bin
 │       ├── metadata
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       │   ├── suk_metadata_hash_id_m.bin
 │       │       │   └── uuk_metadata_text_s.bin
@@ -385,7 +371,7 @@ interlace-ex
 │       │           ├── udk_taxonomy_id_u.bin
 │       │           └── udk_xdb_id_set_s.bin
 │       ├── molecular_interaction
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       ├── enumeration
 │       │       └── property
@@ -395,7 +381,7 @@ interlace-ex
 │       │           ├── udk_pubmed_id_set_s.bin
 │       │           └── udk_taxonomy_id_u.bin
 │       ├── ontology
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       │   ├── suk_ontology_hash_id_m.bin
 │       │       │   └── uuk_ontology_text_s.bin
@@ -408,7 +394,7 @@ interlace-ex
 │       │           ├── udk_go_id_u.bin
 │       │           └── udk_pubmed_id_u.bin
 │       ├── ortholog
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       ├── enumeration
 │       │       └── property
@@ -417,7 +403,7 @@ interlace-ex
 │       │           ├── udk_ortholog_taxonomy_id_u.bin
 │       │           └── udk_taxonomy_id_u.bin
 │       ├── pathway
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       │   ├── suk_pathway_hash_id_m.bin
 │       │       │   └── uuk_pathway_text_s.bin
@@ -427,7 +413,7 @@ interlace-ex
 │       │           ├── udk_pathway_hash_id_m.bin
 │       │           └── udk_reactome_hsa_id_u.bin
 │       ├── product
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       ├── enumeration
 │       │       │   └── uuk_synonym_category_cv_s.bin
@@ -437,7 +423,7 @@ interlace-ex
 │       │           ├── udk_synonym_category_cv_d.bin
 │       │           └── udk_synonym_s.bin
 │       ├── protein_interaction
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       ├── enumeration
 │       │       └── property
@@ -447,14 +433,14 @@ interlace-ex
 │       │           ├── udk_ensp_id_i.bin
 │       │           └── udk_likelihood_score_n.bin
 │       ├── pubmed_reference
-│       │   └── 20260818000000
+│       │   └── 20260906180032
 │       │       ├── catalog
 │       │       ├── enumeration
 │       │       └── property
 │       │           ├── sdk_entrez_gene_id_u.bin
 │       │           └── udk_pubmed_id_u.bin
 │       └── synonym
-│           └── 20260818000000
+│           └── 20260906180032
 │               ├── catalog
 │               ├── enumeration
 │               │   └── uuk_synonym_category_cv_s.bin
@@ -464,72 +450,42 @@ interlace-ex
 │                   ├── udk_protein_id_s.bin
 │                   ├── udk_synonym_category_cv_d.bin
 │                   └── udk_synonym_version_s.bin
-└── event << automatized processes
+└── event
     ├── dna
-    │   ├── w31018
-    │   │   └── 20260823000000
-    │   │       ├── action
-    │   │       │   └── 20260825131404_a31019.log
-    │   │       ├── artifact
-    │   │       └── function
-    │   └── w31020
-    │       └── 20260823000000
+    │   └── w32001
+    │       └── 20260922180031
     │           ├── action
-    │           │   ├── 20260825131132_a31020.log
-    │           │   └── 20260830182605_a31019.log
+    │           │   ├── 20260922180031_a32001.log
+    │           │   └── 20260922192021_a32003.log
     │           ├── artifact
-    │           │   └── metadata_1854081875.tsv.gz
     │           └── function
     └── gene
-        └── w31001
-            └── 20260818000000
+        ├── w31001
+        │   └── 20260906180032
+        │       ├── action
+        │       │   ├── 20260906180328_a31001.log
+        │       │   ├── 20260906180406_a31002.log
+        │       │   ├── 20260906180445_a31003.log
+        │       │   ├── 20260906180456_a31004.log
+        │       │   ├── 20260906180505_a31005.log
+        │       │   ├── 20260906180540_a31006.log
+        │       │   ├── 20260906180540_a31007.log
+        │       │   ├── 20260906180603_a31008.log
+        │       │   ├── 20260906180610_a31009.log
+        │       │   ├── 20260906180754_a31010.log
+        │       │   ├── 20260906180803_a31011.log
+        │       │   ├── 20260906180804_a31012.log
+        │       │   ├── 20260906180806_a31013.log
+        │       │   ├── 20260906180916_a31014.log
+        │       │   └── 20260906180917_a31015.log
+        │       ├── artifact
+        │       └── function
+        └── w32002
+            └── 20260922174744
                 ├── action
-                │   ├── j01001_w31001_a31001.log
-                │   ├── j02001_w31001_a31002.log
-                │   ├── j03001_w31001_a31003.log
-                │   ├── j04001_w31001_a31004.log
-                │   ├── j05001_w31001_a31005.log
-                │   ├── j06001_w31001_a31006.log
-                │   ├── j07001_w31001_a31007.log
-                │   ├── j08001_w31001_a31008.log
-                │   ├── j09001_w31001_a31009.log
-                │   ├── j10001_w31001_a31010.log
-                │   ├── j11001_w31001_a31011.log
-                │   ├── j12001_w31001_a31012.log
-                │   ├── j13001_w31001_a31013.log
-                │   ├── j14001_w31001_a31014.log
-                │   └── j15001_w31001_a31015.log
+                │   └── 20260922174744_a32002.log
                 ├── artifact
-                │   ├── chemical_reaction_2070476892.tsv.gz
-                │   ├── function_3247907367.tsv.gz
-                │   ├── genetic_variation_1297334593.tsv.gz
-                │   ├── genomic_variation_250365287.tsv.gz
-                │   ├── medical_genetics_1136756597.tsv.gz
-                │   ├── metadata_1866209655.tsv.gz
-                │   ├── molecular_interaction_1889509790.tsv.gz
-                │   ├── ontology_4110814942.tsv.gz
-                │   ├── ortholog_3239812002.tsv.gz
-                │   ├── pathway_3875846863.tsv.gz
-                │   ├── product_3666969786.tsv.gz
-                │   ├── protein_interaction_1374146226.tsv.gz
-                │   ├── pubmed_reference_3615558828.tsv.gz
-                │   └── synonym_31960174.tsv.gz
                 └── function
-                    ├── j01001_w31001_a31001
-                    ├── j02001_w31001_a31002
-                    ├── j03001_w31001_a31003
-                    ├── j04001_w31001_a31004
-                    ├── j05001_w31001_a31005
-                    ├── j06001_w31001_a31006
-                    ├── j07001_w31001_a31007
-                    ├── j08001_w31001_a31008
-                    ├── j09001_w31001_a31009
-                    ├── j10001_w31001_a31010
-                    ├── j11001_w31001_a31011
-                    ├── j12001_w31001_a31012
-                    ├── j13001_w31001_a31013
-                    ├── j14001_w31001_a31014
-                    └── j15001_w31001_a31015
 ```
 
 ### 10. Binary File Nomenclature

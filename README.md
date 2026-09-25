@@ -1,8 +1,8 @@
-###### September 11, 2026: interlace-go readme v19
+###### September 25, 2026: interlace-go readme v20
 
 # interlace-go
 
-At Quantome, we can govern data differently by keeping our data assets free from infrastructure bloat, archaic standards, and vendor lock-in. To honor these principles, we are sharing our ultralight Go library for free and staying committed to keeping it thin.
+At Quantome, we can govern data soundly by keeping our digital assets free from infrastructure bloat, archaic standards, and vendor lock-in. To uphold these principles, we share our ultralight Go library for free and stay committed to keeping it thin.
 
 ![interlace-go](assets/interlace-go.png)
 
@@ -12,7 +12,8 @@ At Quantome, we can govern data differently by keeping our data assets free from
 2) [Installation](#2-installation)
 3) [Test](#3-test)
 4) [Usage](#4-usage)
-5) [License](#5-license)
+5) [License](#5-license--legal-notice)
+6) [Support and Commercial SLAs](#6-support-and-commercial-slas)
 
 ### 1. Introduction
 
@@ -20,7 +21,7 @@ A database is a transient tool and can be treated as a disposable secondary stor
 
 The **interlace-go** library helps innovators refine data and consolidate it into a ready state for any downstream tool, like pluripotent stem cells. It ingests and synthesizes disparate datasets into immutable, vertically partitioned, strongly typed binary arrays. This parallel substrate enables seamless, additive schema evolution while maintaining absolute data integrity and agile streaming fluidity. [PKG] gives a brief overview of these details.
 
-The Interlace Go packages enable you to program command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
+The Interlace Go packages enable you to program command-line tools for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, relational databases, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
 
 ### 2. Installation
 
@@ -113,8 +114,25 @@ Learn how to code and build a data stack with the **interlace-ex** command-line 
 
 Once you have built the *Gene* data stack, you can use the **interlace-do** toolset to learn how to search and retrieve data from any **Interlace Asset**. This repository provides more than 40 command-line examples to help you do your own *Gene* queries.
 
-### 5. License
+### 5. License & Legal Notice
 
-This project is licensed under the Apache License Version 2.0 – see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **Apache License 2.0**.
+
+* **Permissive Reuse:** You are free to modify, distribute, and use this software in your own commercial or private applications.
+* **No Lock-In:** Your downstream solutions remain entirely your own.
+* **As-Is Basis:** Per Sections 7 and 8 of the Apache 2.0 License, this software is provided strictly on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND. 
+
+For full details, please review the [LICENSE](LICENSE) and [NOTICE](NOTICE) files in the root of this repository.
+
+### 6. Support and Commercial SLAs
+
+This repository is an **open-source transparency initiative** and does not come with a dedicated maintenance or support SLA.
+
+Bug reports and feature suggestions can be submitted via GitHub Issues.
+
+If your organization requires guaranteed technical support, custom feature development, or integration assistance, please contact your account manager or reach out via [Quantome SAS](https://www.sas-quantome.com).
+
+***
+*Copyright © 2026 Quantome SAS. All rights reserved.*
 
 [PKG]: https://github.com/sas-quantome/interlace-go/tree/main/pkg/#PKG
