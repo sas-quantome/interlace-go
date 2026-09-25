@@ -1,8 +1,8 @@
-###### September 25, 2026: interlace-go readme v20
+###### September 25, 2026: interlace-go readme v21
 
 # interlace-go
 
-At Quantome, we can govern data soundly by keeping our digital assets free from infrastructure bloat, archaic standards, and vendor lock-in. To uphold these principles, we share our ultralight Go library for free and stay committed to keeping it thin.
+At Quantome, we can govern data soundly by keeping our digital assets free from infrastructure bloat, archaic standards, and vendor lock-in. To demonstrate and uphold these principles, we share our ultralight Go library for free and stay committed to keeping it thin.
 
 ![interlace-go](assets/interlace-go.png)
 
