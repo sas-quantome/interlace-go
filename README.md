@@ -1,4 +1,4 @@
-###### September 29, 2026: interlace-go readme v25
+###### September 29, 2026: interlace-go readme v26
 
 # Welcome to Quantome’s Interlace Go Library
 
@@ -126,7 +126,7 @@ make test
 
 ### 4. Usage
 
-The following GitHub repositories demonstrate how to use the **interlace-go** library.
+The following [Quantome's](https://github.com/sas-quantome) GitHub repositories demonstrate how to use the **interlace-go** library.
 
 #### 4.1 [interlace-ex](https://github.com/sas-quantome/interlace-ex)
 
