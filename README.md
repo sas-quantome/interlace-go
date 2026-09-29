@@ -1,4 +1,4 @@
-###### September 29, 2026: interlace-go readme v24
+###### September 29, 2026: interlace-go readme v25
 
 # Welcome to Quantome’s Interlace Go Library
 
@@ -41,7 +41,7 @@ The ability to discover new attributes later and instantly have a new column ava
 
 The **interlace-go** approach groups array files inside a single folder and treats that folder as a unique data asset. This is a standard **Data Lake pattern**. It is often referred to as the **Directory-as-a-Table** concept, where the folder path designates the logical table or **Interlace Asset**, and several assets represent an underlying **Interlace Entity**.
 
-#### 1.6 Documentation: Inside Interlace Go
+#### 1.6 Documentation: Deep Dive Inside Interlace Go
 
 ↳ [pkg][PKG]
 
