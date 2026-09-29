@@ -1,10 +1,10 @@
-###### September 29, 2026: interlace-go readme v22
+###### September 29, 2026: interlace-go readme v23
 
-# Welcome to Quantome’s **interlace-go** Library
+# Welcome to Quantome’s [interlace-go][PKG] Library
 
 This library helps innovators refine data and consolidate it into a ready state for any downstream tool, like pluripotent stem cells. It ingests and synthesizes disparate datasets into immutable, vertically partitioned, strongly typed binary arrays. This parallel substrate enables seamless, additive schema evolution while maintaining absolute data integrity and agile streaming fluidity.
 
-The **interlace-go** [packages][PKG] enable are designed to build robust command-line applications for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, relational databases, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
+The **interlace-go** packages are designed to build robust command-line applications for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, relational databases, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
 
 ![interlace-go](assets/interlace-go.png)
 
