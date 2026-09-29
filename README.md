@@ -1,6 +1,6 @@
-###### September 29, 2026: interlace-go readme v23
+###### September 29, 2026: interlace-go readme v24
 
-# Welcome to Quantome’s [interlace-go][PKG] Library
+# Welcome to Quantome’s Interlace Go Library
 
 This library helps innovators refine data and consolidate it into a ready state for any downstream tool, like pluripotent stem cells. It ingests and synthesizes disparate datasets into immutable, vertically partitioned, strongly typed binary arrays. This parallel substrate enables seamless, additive schema evolution while maintaining absolute data integrity and agile streaming fluidity.
 
@@ -21,25 +21,29 @@ The **interlace-go** packages are designed to build robust command-line applicat
 
 A database is a transient tool and can be treated as a disposable secondary store. True independence from vendor lock-in requires data products built for additive schema evolution, free of infrastructure bloat, and liberated from archaic standards.
 
-#### 1.1 The Overall Architecture: Extensible Columnar Storage
+#### 1.1 Overall Architecture: Extensible Columnar Storage
 
 The **interlace-go** library stores data by column (e.g., names in one file, SSNs in another) rather than by row (e.g., the whole JSON record in one file), this is a **Columnar Storage** (or Column-Oriented) format. Because new columns can be added at will without rewriting the old ones, it is **Extensible** or **Dynamic**.
 
-#### 1.2 The Data Structure: Structure of Arrays (SoA) / Parallel Arrays
+#### 1.2 Data Structure: Structure of Arrays (SoA) / Parallel Arrays
 
 By maintaining separate arrays for each attribute and using the index (e.g., index 0 in the key array matches index 0 in the other arrays) to reconstruct a record, we use the **Structure of Arrays (SoA)** pattern. The arrays themselves are called **Parallel Arrays**.
 
-#### 1.3 The Parsing Process: Record Shredding / Vertical Partitioning
+#### 1.3 Parsing Process: Record Shredding / Vertical Partitioning
 
 The library splits nested records (e.g., a wide JSON document) into individual files for each attribute (or column). This is officially known as **Data Shredding**, a term popularized by Google's Dremel paper, which led to Apache Parquet. At a database architecture level, splitting a table into individual column files is called **Vertical Partitioning**.
 
-#### 1.4 The Data Evolution: Additive Schema Evolution
+#### 1.4 Data Evolution: Additive Schema Evolution
 
 The ability to discover new attributes later and instantly have a new column available without rebuilding the previous files is called **Additive Schema Evolution**. The interlace-go system uses a **late-binding schema**, meaning it doesn't strictly enforce the exact shape of the "table" until it reads the folder.
 
-#### 1.5 The Organization: Directory-as-a-Table (Data Lake Pattern)
+#### 1.5 Organization: Directory-as-a-Table (Data Lake Pattern)
 
 The **interlace-go** approach groups array files inside a single folder and treats that folder as a unique data asset. This is a standard **Data Lake pattern**. It is often referred to as the **Directory-as-a-Table** concept, where the folder path designates the logical table or **Interlace Asset**, and several assets represent an underlying **Interlace Entity**.
+
+#### 1.6 Documentation: Inside Interlace Go
+
+↳ [pkg][PKG]
 
 ### 2. Installation
 
