@@ -1,4 +1,4 @@
-###### September 29, 2026: interlace-go readme v26
+###### October 17, 2026: interlace-go readme v27
 
 # Welcome to Quantome’s Interlace Go Library
 
@@ -152,9 +152,9 @@ This repository is an **open-source transparency initiative** and does not come 
 
 Bug reports and feature suggestions can be submitted via GitHub Issues.
 
-If your organization requires guaranteed technical support, custom feature development, or integration assistance, please contact your account manager or reach out via [Quantome SAS](https://www.sas-quantome.com).
+If your organization requires guaranteed technical support, custom feature development, or integration assistance, please contact your account manager or reach out via [www.sas-quantome.com](https://www.sas-quantome.com).
 
 ***
-*Copyright © 2026 Quantome SAS. All rights reserved.*
+*&copy; 2026, Société par Actions Simplifiée Quantome, Paris 75014, France. All rights reserved.*
 
 [PKG]: https://github.com/sas-quantome/interlace-go/tree/main/pkg/#PKG
