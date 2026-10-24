@@ -7,7 +7,7 @@ package versioner
 
 // ApiVersion defines the current code version in ISO 8601 format; SetConfigParams() creates the application version.
 const (
-	ApiVersion = "v1.0.0-rc.1 2026_09_12_" // ISO 8601 format string; the application concatenates the application revision number.
+	ApiVersion = "2026_09_12_" // ISO 8601 format string; the application concatenates the application revision number.
 )
 
 func ApiVersionString(appRevision string) string {
