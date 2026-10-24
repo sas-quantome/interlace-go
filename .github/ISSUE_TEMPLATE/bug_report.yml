@@ -1,0 +1,48 @@
+name: Bug Report
+description: File a bug report for this Go library.
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue! Please ensure you are using the latest version of the library before submitting.
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce / Minimal Example
+      description: Please provide a minimal, reproducible example (a Go code snippet or a link to a repository).
+      value: |
+        ```go
+        package main
+        
+        import "[github.com/sas-quantome/interlace-go](https://github.com/sas-quantome/interlace-go)"
+        
+        func main() {
+            // Your code here
+        }
+        ```
+    validations:
+      required: true
+  - type: input
+    id: go_version
+    attributes:
+      label: Go Version
+      description: What version of Go are you using? (Run `go version`)
+      placeholder: "e.g., go version go1.21.0 darwin/arm64"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Details
+      description: Any other relevant environment details? (e.g., OS, architecture, or the output of `go env`)
+    validations:
+      required: false
