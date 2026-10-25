@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.0-rc.0](https://github.com/sas-quantome/interlace-go/compare/v1.0.0-rc.0...v1.1.0-rc.0) (2026-10-25)
+## [1.1.0-rc.0](https://github.com/sas-quantome/interlace-go/compare/v1.0.0-rc.0...v1.0.0-rc.1) (2026-10-25)
 
 
 ### Features
