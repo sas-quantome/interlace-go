@@ -13,7 +13,7 @@ import (
 	"unicode"
 )
 
-// RandomDialCode returns random dial code from code map.
+// RandomDialCode returns random dial code from the code map.
 func RandomDialCode(codes map[int]string) int {
 	dialCode := 0
 	n := RandomInt(1, int64(len(codes)))
