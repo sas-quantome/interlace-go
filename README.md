@@ -1,6 +1,8 @@
-###### October 17, 2026: interlace-go readme v27
+###### October 27, 2026: interlace-go readme v28
 
 # Welcome to Quantome’s Interlace Go Library
+
+[![Build Status](https://github.com/sas-quantome/interlace-go/actions/workflows/release.yml/badge.svg)](https://github.com/sas-quantome/interlace-go/actions/workflows/release.yml) [![Latest Release](https://img.shields.io/github/v/release/sas-quantome/interlace-go?include_prereleases&sort=semver)](https://github.com/sas-quantome/interlace-go/releases) [![Go Version](https://img.shields.io/github/go-mod/go-version/sas-quantome/interlace-go)](https://github.com/sas-quantome/interlace-go/blob/main/go.mod)
 
 This library helps innovators refine data and consolidate it into a ready state for any downstream tool, like pluripotent stem cells. It ingests and synthesizes disparate datasets into immutable, vertically partitioned, strongly typed binary arrays. This parallel substrate enables seamless, additive schema evolution while maintaining absolute data integrity and agile streaming fluidity.
 
