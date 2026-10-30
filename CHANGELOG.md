@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0-rc.2](https://github.com/sas-quantome/interlace-go/compare/v1.0.0-rc.1...v1.1.0-rc.2) (2026-10-30)
+
+
+### Features
+
+* add `Tabulator` for columnar data structures and search/sort capabilities ([150607a](https://github.com/sas-quantome/interlace-go/commit/150607a4fab01f12f6e7a975b52680deb448b42e))
+
 ## [1.1.0-rc.0](https://github.com/sas-quantome/interlace-go/compare/v1.0.0-rc.0...v1.0.0-rc.1) (2026-10-25)
 
 
