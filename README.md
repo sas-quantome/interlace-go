@@ -1,14 +1,14 @@
-###### October 27, 2026: interlace-go readme v28
+###### October 30, 2026: interlace-go readme v29
 
-# Welcome to Quantome’s Interlace Go Library
+# Interlace Go: Pluripotent Columnar Binary Engine
 
 [![Build Status](https://github.com/sas-quantome/interlace-go/actions/workflows/release.yml/badge.svg)](https://github.com/sas-quantome/interlace-go/actions/workflows/release.yml) [![Latest Release](https://img.shields.io/github/v/release/sas-quantome/interlace-go?include_prereleases&sort=semver)](https://github.com/sas-quantome/interlace-go/releases) [![Go Version](https://img.shields.io/github/go-mod/go-version/sas-quantome/interlace-go)](https://github.com/sas-quantome/interlace-go/blob/main/go.mod)
 
-This library helps innovators refine data and consolidate it into a ready state for any downstream tool, like pluripotent stem cells. It ingests and synthesizes disparate datasets into immutable, vertically partitioned, strongly typed binary arrays. This parallel substrate enables seamless, additive schema evolution while maintaining absolute data integrity and agile streaming fluidity.
+**Interlace-go** is an ultralight Golang library for innovators looking to refine their data and consolidate it into a ready state for any downstream tool, like pluripotent stem cells. It ingests and synthesizes disparate datasets into immutable, vertically partitioned, strongly typed binary arrays. This parallel substrate enables seamless, additive schema evolution while maintaining absolute data integrity and agile streaming fluidity.
 
 The **interlace-go** packages are designed to build robust command-line applications for high-speed information processing and querying, piping deterministic data directly into downstream tools such as LLMs, relational databases, edge computing systems, bioinformatics pipelines, and standard Linux workflows.
 
-![interlace-go](assets/interlace-go.png)
+![inside-interlace](assets/inside-interlace.png)
 
 ## Contents
 

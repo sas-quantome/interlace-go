@@ -1,8 +1,8 @@
-###### September 10, 2026: interlace-go pkg readme v12
+###### October 30, 2026: interlace-go pkg readme v13
 
 # PKG
 
-![inside-interlace](../assets/inside-interlace.png)
+![interlace-go](../assets/interlace-go.png)
 
 ## Contents
 
@@ -12,11 +12,12 @@
 4) [Randommer](#4-randommer)
 5) [Runner](#5-runner)
 6) [Storekeeper](#6-storekeeper)
-7) [Tester](#7-tester)
-8) [Versioner](#8-versioner)
-9) [Directory Architecture: Entities and Events](#9-directory-architecture-entities-and-events)
-10) [Binary File Nomenclature](#10-binary-file-nomenclature)
-11) [Binary File Integrity Check](#11-binary-file-integrity-check)
+7) [Tabulator](#7-tabulator)
+8) [Tester](#8-tester)
+9) [Versioner](#9-versioner)
+10) [Directory Architecture: Entities and Events](#10-directory-architecture-entities-and-events)
+11) [Binary File Nomenclature](#11-binary-file-nomenclature)
+12) [Binary File Integrity Check](#12-binary-file-integrity-check)
 
 ### 1. Contractor
 
@@ -90,20 +91,27 @@ The primary structural engine for the parallel arrays. It delivers the specializ
 - [Streamer](./storekeeper/streamer.go)
 - [Streamer Test](./storekeeper/streamer_test.go)
 
-### 7. Tester
+### 7. Tabulator
+
+Data structure for massive tabular string data, column-oriented, with search and sort capabilities.
+
+- [Tabulator](./tabulator/tabulator.go)
+- [Tabulator Test](./tabulator/tabulator_test.go)
+
+### 8. Tester
 
 A utility designed to resolve absolute repository paths dynamically, ensuring that automated testing frameworks can reliably locate Git repositories and local data assets regardless of the host environment.
 
 - [Tester](./tester/tester.go)
 
-### 8. Versioner
+### 9. Versioner
 
 Enforces strict provenance tracking by storing and logging the current SDK library version in standard ISO 8601 format.
 
 - [Version](./versioner/version.go)
 - [Version Test](./versioner/version_test.go)
 
-### 9. Directory Architecture: Entities and Events
+### 10. Directory Architecture: Entities and Events
 
 The sole operational requirement for the **interlace-go** SDK is specifying a base path to the root directory. From this root, the architecture enforces a rigidly consistent organization pattern designed specifically so that Large Language Models (LLMs) can instantly traverse, map, recognize, and reason the **Entity & Event** relationship. To achieve this, the architecture strictly decouples the structural framework into two parallel pathways: entities (representing refined data states) and events (representing computational processes).
 
@@ -488,7 +496,7 @@ interlace-ex
                 └── function
 ```
 
-### 10. Binary File Nomenclature
+### 11. Binary File Nomenclature
 
 To enable autonomous data routing without parsing heavy file headers, the architecture enforces a strict file-naming convention. The prefix, role, and suffix of a **interlace-go** binary file explicitly declare its structural data type, memory layout, and intended SDK decoding algorithm. The formal file name syntax is compositional: 
 
@@ -512,18 +520,58 @@ To enable autonomous data routing without parsing heavy file headers, the archit
 | Role      | `_f`        | 8-Byte float array (float64)           | Float container                    |
 | Role      | `_n`        | 4-Byte integer array (int32)           | Small integer container            |
 | Role      | `_i`        | 8-Byte integer array (int64)           | Large integer container            |
-| Role      | `_z`        | Array of byte arrays                   | Byte array container               |
 | Suffix    | `.bin`      | Single-native-type 1D array Go binary  | Fast-read storage                  |
 
-### 11. Binary File Integrity Check
+### 12. Binary File Integrity Check
 
-The first 8- and last 4-bytes in **interlace-go** binary files are reserved magic bytes:
+The first 8- and last 4-bytes in **interlace-go** (little-endian) binary files are reserved magic bytes:
 
-1) The first 8-bytes start with 'B' + 'I' + 'N' + data type fallow by the version datestamp in minutes.
-2) The last 4-bytes encode the MD5 of the payload.
+- The first 8-bytes encode "BIN" + 1-byte Type Token (`s=string, u=uint32, f=float64..`) + 4-byte version in minutes.
 
-A single byte alteration in this file the SDK will consider corrupted, and the minutes must match the **Entity's** *TimeTag* pathway.
+```text
+% xxd suk_entrez_gene_id_u.bin | head
+00000000: 4249 4e75 0005 7738 0100 0000 0200 0000  BINu..w8........
+00000010: 0900 0000 0a00 0000 0b00 0000 0c00 0000  ................
+00000020: 0d00 0000 0e00 0000 0f00 0000 1000 0000  ................
+00000030: 1100 0000 1200 0000 1300 0000 1400 0000  ................
+00000040: 1500 0000 1600 0000 1700 0000 1800 0000  ................
+00000050: 1900 0000 1a00 0000 1b00 0000 1c00 0000  ................
+00000060: 1d00 0000 1e00 0000 1f00 0000 2000 0000  ............ ...
+00000070: 2100 0000 2200 0000 2300 0000 2400 0000  !..."...#...$...
+00000080: 2500 0000 2600 0000 2700 0000 2800 0000  %...&...'...(...
+00000090: 2900 0000 2b00 0000 2f00 0000 3000 0000  )...+.../...0...
+```
 
-Thus, the **interlace-go** binary files are not Go-centric, they are readable by other programming languages like Python, Java, C, and Rust.
+- The last 4-bytes encode the MD5 of the payload.
 
+```text
+% xxd suk_entrez_gene_id_u.bin | tail
+000bd3c0: b86f aa08 8977 aa08 aa1f ab08 ab1f ab08  .o...w..........
+000bd3d0: ac1f ab08 ad1f ab08 ae1f ab08 8d8b ab08  ................
+000bd3e0: 8f8b ab08 1992 af08 8b8e b008 8c8e b008  ................
+000bd3f0: 8d8e b008 a0a2 b208 9dc0 b208 e101 b308  ................
+000bd400: 3706 b508 3806 b508 3906 b508 fa20 b508  7...8...9.... ..
+000bd410: fb20 b508 fc20 b508 ff20 b508 63ca b508  . ... ... ..c...
+000bd420: 64ca b508 66ca b508 5075 c108 5175 c108  d...f...Pu..Qu..
+000bd430: 2497 c308 2597 c308 2697 c308 2797 c308  $...%...&...'...
+000bd440: 2897 c308 2997 c308 2a97 c308 a8d8 c808  (...)...*.......
+000bd450: ffe2 cc08 bbb7 cf08 96b5 67f0            ..........g.
+```
 
+A single byte alteration in the binary file the SDK will consider corrupted, and the minutes must match the **Entity's** *TimeTag* pathway.
+
+The **interlace-go** binary files are not Go-centric, they are readable by other programming languages like Python, Java, C, and Rust.
+
+```Python
+import hashlib, pathlib, struct, numpy as np, torch
+
+DTYPES = {b"s": np.str, b"d": np.uint8, b"u": np.uint32, b"m": np.uint64, b"f": np.float64, b"n": np.int32, b"i": np.int64}
+
+def load_interlace_tensor(path: str) -> torch.Tensor:
+    raw = pathlib.Path(path).read_bytes()
+    magic, token, ver_min = struct.unpack("<3s1sI", raw[:8])
+    assert magic == b"BIN" and hashlib.md5(raw[:-4]).digest()[:4] == raw[-4:]
+    dtype = np.dtype(DTYPES[token])
+    arr = np.memmap(path, dtype=dtype, mode="r", offset=8, shape=((len(raw) - 12) // dtype.itemsize,))
+    return torch.from_numpy(arr)
+```
