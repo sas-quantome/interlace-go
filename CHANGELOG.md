@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1-rc.2](https://github.com/sas-quantome/interlace-go/compare/v1.0.0-rc.2...v1.0.1-rc.2) (2026-11-01)
+
+
+### Bug Fixes
+
+* update GitRepoPath ([8370bfa](https://github.com/sas-quantome/interlace-go/commit/8370bfadf34aae87d0622a9e396e29104627fb3f))
+
 ## [1.0.0-rc.2](https://github.com/sas-quantome/interlace-go/compare/v1.0.0-rc.1...v1.1.0-rc.2) (2026-10-30)
 
 
