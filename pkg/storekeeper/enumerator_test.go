@@ -16,7 +16,7 @@ import (
 )
 
 func tmpBinFile() string {
-	repoPath := tester.GitRepoPath(tester.GitProjectName, tester.GitRepoName)
+	repoPath := tester.GitRepoPath()
 	return path.Join(repoPath, "test", "suk_hola_s.bin")
 }
 
