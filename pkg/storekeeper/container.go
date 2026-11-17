@@ -18,11 +18,11 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"syscall"
 	"time"
 	"unsafe"
 
 	"github.com/sas-quantome/interlace-go/pkg/runner"
+	"golang.org/x/sys/unix"
 )
 
 // Epsilon for float64 comparisons.
@@ -49,6 +49,7 @@ type Container struct {
 	SUK, SDK, UUK, UDK, Fit, Found    bool
 	IsCat, IsSet, IsEnu, IsBit, IsNuc bool
 	FindOneOnly, FromAt, Expand       bool
+	Prewarm                           bool // Issue MADV_WILLNEED to warm OS page cache from cold storage
 	Epsilon                           float64
 	Len, At                           int
 	Ope                               OperatorType
@@ -72,7 +73,7 @@ type Container struct {
 }
 
 // epoch is used to convert YYYYMMDDHHMMSS into minutes starting from 2026 required for the 8-byte magic string
-// in every bin file: B I T # * * * * where # is the data type and **** is the timestamp in number of minutes.
+// in every bin file: B I N # * * * * where # is the data type and **** is the timestamp in number of minutes.
 var epoch = time.Date(2026, time.January, 1, 0, 0, 0, 0, time.UTC)
 
 // NewContainer initializes and returns a new Container, the BinFile full path is preferred.
@@ -115,7 +116,8 @@ func NewContainer(name string) *Container {
 // CloseMappedArr clears memory used, e.g., use defer co.CloseMappedArr() right after co.OpenNumArr() or co.OpenStrArr().
 func (co *Container) CloseMappedArr() error {
 	if co.mMap != nil {
-		err := syscall.Munmap(co.mMap)
+		err := unix.Munmap(co.mMap)
+		co.mMap = nil
 		switch co.DataType {
 		case 's':
 			co.SArr = nil
@@ -134,6 +136,190 @@ func (co *Container) CloseMappedArr() error {
 		}
 		return err
 	}
+	return nil
+}
+
+// mapAndVerify memory-maps filename read-only via unix.Mmap, optionally issues MADV_WILLNEED
+// to pre-warm the OS page cache from cold network storage, validates the 8-byte header,
+// and verifies the trailing 4-byte Little-Endian CRC32 IEEE checksum.
+func (co *Container) mapAndVerify(filename string, ignoreVersion bool) ([]byte, error) {
+	file, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+	// The OS keeps the memory map alive until unix.Munmap is called.
+	defer func(file *os.File) {
+		_ = file.Close()
+	}(file)
+
+	fi, err := file.Stat()
+	if err != nil {
+		return nil, err
+	}
+	size := int(fi.Size())
+
+	// Minimum size must be 12 (8-byte header + 4-byte CRC32 trailer)
+	if size < 12 {
+		return nil, fmt.Errorf("file too small: %s", filename)
+	}
+
+	// 1. Map the file directly into virtual memory
+	co.mMap, err = unix.Mmap(int(file.Fd()), 0, size, unix.PROT_READ, unix.MAP_SHARED)
+	if err != nil {
+		return nil, fmt.Errorf("mmap failed: %w", err)
+	}
+
+	cleanup := func(cause error) ([]byte, error) {
+		_ = unix.Munmap(co.mMap)
+		co.mMap = nil
+		return nil, cause
+	}
+
+	// 2. Verify 8-byte header ("BIN" + Type Token + version-in-minutes)
+	header := co.mMap[0:8]
+	if err = co.verifyHeader(file, header, ignoreVersion); err != nil {
+		return cleanup(err)
+	}
+
+	// 3. Hint sequential read-ahead into Linux OS page cache before the CRC32 scan
+	if co.Prewarm {
+		if err = unix.Madvise(co.mMap, unix.MADV_WILLNEED); err != nil {
+			return cleanup(fmt.Errorf("madvise MADV_WILLNEED failed: %w", err))
+		}
+	}
+
+	// 4. Validate 4-byte trailing CRC32 checksum in a single pass
+	payload := co.mMap[8 : size-4]
+	expectedCRC := binary.LittleEndian.Uint32(co.mMap[size-4:])
+	if crc32.ChecksumIEEE(payload) != expectedCRC {
+		return cleanup(fmt.Errorf("data corruption detected: checksum failed in %s", filename))
+	}
+
+	return payload, nil
+}
+
+func (co *Container) OpenNumArr(filename string, ignoreVersion bool) error {
+	if co.DataType == 's' {
+		return fmt.Errorf("invalid data type for numeric array: %s", filename)
+	}
+
+	payload, err := co.mapAndVerify(filename, ignoreVersion)
+	if err != nil {
+		return err
+	}
+
+	// Zero-Copy conversion from []byte to typed slice
+	var count int
+	switch co.DataType {
+	case 'i', 'f', 'm':
+		count = len(payload) / 8
+	case 'd':
+		count = len(payload)
+	case 'n', 'u':
+		count = len(payload) / 4
+	}
+
+	switch co.DataType {
+	case 'i':
+		ptr := (*int64)(unsafe.Pointer(unsafe.SliceData(payload)))
+		co.IArr = unsafe.Slice(ptr, count)
+		co.Len = len(co.IArr)
+	case 'f':
+		ptr := (*float64)(unsafe.Pointer(unsafe.SliceData(payload)))
+		co.FArr = unsafe.Slice(ptr, count)
+		co.Len = len(co.FArr)
+	case 'm':
+		ptr := (*uint64)(unsafe.Pointer(unsafe.SliceData(payload)))
+		co.MArr = unsafe.Slice(ptr, count)
+		co.Len = len(co.MArr)
+	case 'd':
+		ptr := unsafe.SliceData(payload)
+		co.DArr = unsafe.Slice(ptr, count)
+		co.Len = len(co.DArr)
+	case 'n':
+		ptr := (*int32)(unsafe.Pointer(unsafe.SliceData(payload)))
+		co.NArr = unsafe.Slice(ptr, count)
+		co.Len = len(co.NArr)
+	case 'u':
+		ptr := (*uint32)(unsafe.Pointer(unsafe.SliceData(payload)))
+		co.UArr = unsafe.Slice(ptr, count)
+		co.Len = len(co.UArr)
+	}
+	co.Fit = true
+
+	return nil
+}
+
+func (co *Container) OpenStrArr(filename string, ignoreVersion bool) error {
+	if co.DataType != 's' {
+		return fmt.Errorf("invalid data type for string array: %s", filename)
+	}
+
+	payload, err := co.mapAndVerify(filename, ignoreVersion)
+	if err != nil {
+		return err
+	}
+
+	// Ensure payload is large enough to contain at least `count` and `dataSize` (4+4 = 8 bytes)
+	if len(payload) < 8 {
+		_ = co.CloseMappedArr()
+		return fmt.Errorf("file structure corrupted: missing payload metadata")
+	}
+
+	// Parse Header Data using slice arithmetic (Zero-copy)
+	count := int32(binary.LittleEndian.Uint32(payload[0:4]))
+	// Each string requires at least 4 bytes in the offset table (plus 8 bytes of metadata),
+	// so count can never physically exceed (len(payload) - 8) / 4.
+	maxPossibleCount := int32((len(payload) - 8) / 4)
+	if count < 0 || count > maxPossibleCount {
+		_ = co.CloseMappedArr()
+		return fmt.Errorf("invalid string count %d (max possible for payload: %d)", count, maxPossibleCount)
+	}
+
+	offsetStart := 4
+	offsetEnd := offsetStart + int(count)*4
+
+	if len(payload) < offsetEnd+4 {
+		_ = co.CloseMappedArr()
+		return fmt.Errorf("file truncated: unable to read data size")
+	}
+
+	dataSize := binary.LittleEndian.Uint32(payload[offsetEnd : offsetEnd+4])
+
+	bytesStart := offsetEnd + 4
+	bytesEnd := bytesStart + int(dataSize)
+
+	if bytesEnd != len(payload) {
+		_ = co.CloseMappedArr()
+		return fmt.Errorf("file structural length mismatch")
+	}
+
+	// Zero-copy map the Offsets array
+	offsetsPtr := (*int32)(unsafe.Pointer(&payload[offsetStart]))
+	offsetsView := unsafe.Slice(offsetsPtr, count)
+
+	// Map the raw characters
+	rawStringBytes := payload[bytesStart:bytesEnd]
+
+	// Construct the []string array (1 Heap Allocation)
+	co.SArr = make([]string, count)
+	var start int32 = 0
+
+	for i := range count {
+		end := offsetsView[i]
+
+		if end < start || int(end) > len(rawStringBytes) {
+			_ = co.CloseMappedArr()
+			return fmt.Errorf("corrupt offset array at string index %d", i)
+		}
+
+		// Map the string directly to the OS mmap bytes
+		co.SArr[i] = unsafe.String(unsafe.SliceData(rawStringBytes[start:end]), end-start)
+		start = end
+	}
+	co.Fit = true
+	co.Len = len(co.SArr)
+
 	return nil
 }
 
@@ -493,218 +679,6 @@ func OperatorCode(name string) OperatorType {
 	}
 }
 
-func (co *Container) OpenNumArr(filename string, ignoreVersion bool) error {
-	if co.DataType == 's' {
-		return fmt.Errorf("invalid data type for numeric array: %s", filename)
-	}
-	file, err := os.Open(filename)
-	if err != nil {
-		return err
-	}
-	// We can close the file immediately after mapping!
-	// The OS keeps the memory map alive until we call Munmap.
-	defer func(file *os.File) {
-		_ = file.Close()
-	}(file)
-
-	fi, err := file.Stat()
-	if err != nil {
-		return err
-	}
-	size := int(fi.Size())
-
-	// FIX: Minimum size must be 12 (8-byte header + 4-byte CRC)
-	if size < 12 {
-		return fmt.Errorf("file too small: %s", filename)
-	}
-
-	// 1. Ask the OS to map the file into virtual memory
-	// Note: syscall.Mmap is Unix-specific (Linux/macOS).
-	co.mMap, err = syscall.Mmap(int(file.Fd()), 0, size, syscall.PROT_READ, syscall.MAP_SHARED)
-	if err != nil {
-		return fmt.Errorf("mMap failed: %w", err)
-	}
-
-	// 2. Slice the mapped memory into regions
-	// We don't read from a stream; we just look at the byte indexes!
-	header := co.mMap[0:8]
-	payload := co.mMap[8 : size-4]
-	crcBytes := co.mMap[size-4:]
-
-	// 3. Verify Header
-	if err = co.verifyHeader(file, header, ignoreVersion); err != nil {
-		return err
-	}
-
-	// 4. Validate Checksum in a single pass
-	// This is blazing fast because crc32 is just scanning virtual memory.
-	expectedCRC := binary.LittleEndian.Uint32(crcBytes)
-	if crc32.ChecksumIEEE(payload) != expectedCRC {
-		_ = syscall.Munmap(co.mMap) // clean up on failure
-		return fmt.Errorf("data corruption detected")
-	}
-
-	// 5. Zero-Copy conversion from []byte to []int64
-	var count int
-	switch co.DataType {
-	case 'i', 'f', 'm':
-		count = len(payload) / 8
-	case 'd':
-		count = len(payload)
-	case 'n', 'u':
-		count = len(payload) / 4
-	}
-
-	// Go 1.20+ safe-unsafe casting
-	// We take the pointer to the start of the payload bytes, cast it to an int64 pointer,
-	// and tell Go to treat that memory as a []int64 slice.
-	switch co.DataType {
-	case 'i':
-		ptr := (*int64)(unsafe.Pointer(unsafe.SliceData(payload)))
-		co.IArr = unsafe.Slice(ptr, count)
-		co.Len = len(co.IArr)
-	case 'f':
-		ptr := (*float64)(unsafe.Pointer(unsafe.SliceData(payload)))
-		co.FArr = unsafe.Slice(ptr, count)
-		co.Len = len(co.FArr)
-	case 'm':
-		ptr := (*uint64)(unsafe.Pointer(unsafe.SliceData(payload)))
-		co.MArr = unsafe.Slice(ptr, count)
-		co.Len = len(co.MArr)
-	case 'd':
-		ptr := unsafe.SliceData(payload)
-		co.DArr = unsafe.Slice(ptr, count)
-		co.Len = len(co.DArr)
-	case 'n':
-		ptr := (*int32)(unsafe.Pointer(unsafe.SliceData(payload)))
-		co.NArr = unsafe.Slice(ptr, count)
-		co.Len = len(co.NArr)
-	case 'u':
-		ptr := (*uint32)(unsafe.Pointer(unsafe.SliceData(payload)))
-		co.UArr = unsafe.Slice(ptr, count)
-		co.Len = len(co.UArr)
-	}
-	co.Fit = true
-
-	return nil
-}
-
-func (co *Container) OpenStrArr(filename string, ignoreVersion bool) error {
-	if co.DataType != 's' {
-		return fmt.Errorf("invalid data type for string array: %s", filename)
-	}
-	file, err := os.Open(filename)
-	if err != nil {
-		return err
-	}
-	// We can close the file descriptor immediately after mmap-ing
-	defer func(file *os.File) {
-		_ = file.Close()
-	}(file)
-
-	fi, err := file.Stat()
-	if err != nil {
-		return err
-	}
-
-	size := int(fi.Size())
-
-	// FIX: Minimum size must be 12 (8-byte header + 4-byte CRC)
-	if size < 12 {
-		return fmt.Errorf("file too small")
-	}
-
-	// 1. Map the file directly into virtual RAM
-	co.mMap, err = syscall.Mmap(int(file.Fd()), 0, size, syscall.PROT_READ, syscall.MAP_SHARED)
-	if err != nil {
-		return fmt.Errorf("mmap failed: %w", err)
-	}
-
-	// 2. Define the payload region
-	// FIX: Updated comment to reflect the 8-byte header skip
-	header := co.mMap[0:8]
-	payload := co.mMap[8 : size-4]
-
-	// 3. Verify Header
-	if err = co.verifyHeader(file, header, ignoreVersion); err != nil {
-		return err
-	}
-
-	// 4. One-pass CRC Check across the entire payload
-	storedCRC := binary.LittleEndian.Uint32(co.mMap[size-4:])
-	if crc32.ChecksumIEEE(payload) != storedCRC {
-		_ = syscall.Munmap(co.mMap)
-		return fmt.Errorf("data corruption detected: checksum failed")
-	}
-
-	// FIX: Ensure payload is large enough to contain at least `count` and `dataSize` (4+4 = 8 bytes)
-	if len(payload) < 8 {
-		_ = syscall.Munmap(co.mMap)
-		return fmt.Errorf("file structure corrupted: missing payload metadata")
-	}
-
-	// 5. Parse Header Data using slice arithmetic (Zero-copy)
-	// payload[0:4] -> string count
-	count := int32(binary.LittleEndian.Uint32(payload[0:4]))
-	// 248 956 422
-	if count < 0 || count > 128*1024*1024 {
-		_ = syscall.Munmap(co.mMap)
-		return fmt.Errorf("invalid count exceeds 128 * 1024 * 1024: %d", count)
-	}
-
-	// 6. Calculate slice boundaries
-	offsetStart := 4
-	offsetEnd := offsetStart + int(count)*4
-
-	// FIX: Prevent panic when reading dataSize by checking bounds against payload size
-	if len(payload) < offsetEnd+4 {
-		_ = syscall.Munmap(co.mMap)
-		return fmt.Errorf("file truncated: unable to read data size")
-	}
-
-	// 7. Read Data Size (immediately follows offsets)
-	dataSize := binary.LittleEndian.Uint32(payload[offsetEnd : offsetEnd+4])
-
-	bytesStart := offsetEnd + 4
-	bytesEnd := bytesStart + int(dataSize)
-
-	// 8. Final sanity check on file structure integrity
-	if bytesEnd != len(payload) {
-		_ = syscall.Munmap(co.mMap)
-		return fmt.Errorf("file structural length mismatch")
-	}
-
-	// 9. Zero-copy map the Offsets array
-	// We cast the memory region containing offsets directly into a []int32
-	offsetsPtr := (*int32)(unsafe.Pointer(&payload[offsetStart]))
-	offsetsView := unsafe.Slice(offsetsPtr, count)
-
-	// 10. Map the raw characters
-	rawStringBytes := payload[bytesStart:bytesEnd]
-
-	// 11. Construct the []string array (1 Heap Allocation)
-	co.SArr = make([]string, count)
-	var start int32 = 0
-
-	for i := range count {
-		end := offsetsView[i]
-
-		// FIX: Sanity check offset values to prevent panic from corrupt data
-		if end < start || int(end) > len(rawStringBytes) {
-			_ = syscall.Munmap(co.mMap) // cleanup on abort
-			return fmt.Errorf("corrupt offset array at string index %d", i)
-		}
-
-		// Map the string directly to the OS mmap bytes
-		co.SArr[i] = unsafe.String(unsafe.SliceData(rawStringBytes[start:end]), end-start)
-		start = end
-	}
-	co.Fit = true
-	co.Len = len(co.SArr)
-
-	return nil
-}
-
 // verifyHeader reads and validates the header, protecting against type mismatch
 func (co *Container) verifyHeader(file *os.File, header []byte, ignoreVersion bool) error {
 	if len(header) < 8 || header[0] != 'B' || header[1] != 'I' || header[2] != 'N' {
@@ -730,7 +704,7 @@ func (co *Container) verifyHeader(file *os.File, header []byte, ignoreVersion bo
 	return nil
 }
 
-// writeHeader prefixes the file with the validation signature and type token: B I T # * * * *
+// writeHeader prefixes the file with the validation signature and type token: B I N # * * * *
 // where # is the data type and **** is the timestamp in number of minutes.
 func (co *Container) writeHeader(file *os.File) error {
 	var err error
