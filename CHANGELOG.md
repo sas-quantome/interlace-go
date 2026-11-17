@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1-rc.3](https://github.com/sas-quantome/interlace-go/compare/v1.0.0-rc.3...v1.0.1-rc.3) (2026-11-17)
+
+
+### Bug Fixes
+
+* implemented MADV_WILLNEED pre-warming, and unified CRC32 verification integrated cleanly into container.go ([f73bbcd](https://github.com/sas-quantome/interlace-go/commit/f73bbcde4e878bb25e0621207a7753b2e6398a30))
+* implemented MADV_WILLNEED pre-warming, and unified CRC32 verification integrated cleanly into container.go ([443acf4](https://github.com/sas-quantome/interlace-go/commit/443acf493250ec82acfe1f445485fa21b8d916c2))
+
 ## [1.0.0-rc.3](https://github.com/sas-quantome/interlace-go/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2026-11-01)
 
 
