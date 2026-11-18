@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0-rc.5](https://github.com/sas-quantome/interlace-go/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2026-11-18)
+
+
+### Bug Fixes
+
+* container GetDataFromFile altDirPath logic ([f66fb1f](https://github.com/sas-quantome/interlace-go/commit/f66fb1fb0bea8e948d6ba3c16cebc628805d4755))
+
 ## [1.0.0-rc.4](https://github.com/sas-quantome/interlace-go/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2026-11-17)
 
 
