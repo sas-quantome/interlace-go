@@ -324,14 +324,14 @@ func (co *Container) OpenStrArr(filename string, ignoreVersion bool) error {
 }
 
 // GetDataFromFile loads bin-encoded data from a file, if dirPath is empty will use the container's Path.
-func (co *Container) GetDataFromFile(dirPath string, ignoreVersion bool) {
+func (co *Container) GetDataFromFile(altDirPath string, ignoreVersion bool) {
 	if co.Err != nil || co.Fit {
 		return
 	}
 
 	var fullPath string
-	if dirPath == "" {
-		fullPath = path.Join(dirPath, co.Name)
+	if altDirPath != "" {
+		fullPath = path.Join(altDirPath, co.Name)
 	} else if co.Path != "" {
 		fullPath = path.Join(co.Path, co.Name)
 	} else {
